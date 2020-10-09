@@ -1,5 +1,4 @@
-build/stm32f3xx_hal_rcc.o: \
- Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c \
+build/MPU6050.o: Core/Src/MPU6050.c Core/Inc/MPU6050.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h \
  Core/Inc/stm32f3xx_hal_conf.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h \
@@ -38,6 +37,8 @@ build/stm32f3xx_hal_rcc.o: \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_wwdg.h
+
+Core/Inc/MPU6050.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 

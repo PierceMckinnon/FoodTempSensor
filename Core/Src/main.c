@@ -44,6 +44,7 @@
 #include <stdio.h>
 #include "FloatToChar.h"
 #include "LiquidCrystal.h"
+#include "MPU6050.h"
 
 
 
@@ -71,9 +72,10 @@ ADC_HandleTypeDef    AdcHandle;
 /* TIM handler declaration */
 TIM_HandleTypeDef    TimHandle;
 
-/* DAC handler declaration */
+/* i2c handler declaration */
+I2C_HandleTypeDef I2CHandle;
 
-
+extern float  GyroY;
 /* Variable containing ADC conversions results */
 __IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
 
@@ -91,6 +93,9 @@ void SystemClock_Config(void);
 void Error_Handler(void);
 static void ADC_Config(void);
 static void TIM_Config(void);
+static void I2C_Config(void);
+static void MX_GPIO_Init(void);
+
 
 
 /* Private functions ---------------------------------------------------------*/
@@ -109,6 +114,7 @@ int main(void)
 	double digital;
 	float Temp;
 	char buff[10];
+ 
   /* STM32F3xx HAL library initialization:
        - Configure the Flash prefetch
        - Configure the Systick to generate an interrupt each 1 msec
@@ -116,7 +122,7 @@ int main(void)
        - Low Level Initialization
      */
   HAL_Init();
-	LiquidCrystal(GPIOB, GPIO_PIN_0, GPIO_PIN_3, GPIO_PIN_5, GPIO_PIN_6, GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10);
+	LiquidCrystal(GPIOA, GPIO_PIN_1, GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_6, GPIO_PIN_7, GPIO_PIN_9, GPIO_PIN_8);
 
 	print("Temperature:");
 
@@ -138,10 +144,13 @@ int main(void)
 
   /* Configure the TIM peripheral */
   TIM_Config();
+  MX_GPIO_Init();
   
-  /* Configure the DAC peripheral */
+  /* Configure the I2C peripheral */
+  I2C_Config();
  
-
+  
+  MPU6050_Init();
   /*## Enable peripherals ####################################################*/
 
   /* Timer counter enable */
@@ -158,7 +167,7 @@ int main(void)
   while (1)
   {
 		
-		
+		MPU6050_Read_Gyro();
     HAL_ADC_PollForConversion(&AdcHandle, HAL_MAX_DELAY);
 		
 		//print("HEY");
@@ -180,7 +189,11 @@ int main(void)
 		setCursor(0,1);
     
     print(buff);
-		
+    float_char(buff,GyroY);
+    setCursor(8,1);
+	  
+    print(buff);
+  
 	
 		
 		HAL_Delay(1000);
@@ -205,6 +218,8 @@ int main(void)
   * @param  None
   * @retval None
   */
+
+
 void SystemClock_Config(void)
 {
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
@@ -289,6 +304,37 @@ static void ADC_Config(void)
 
  
 }
+static void I2C_Config(void)
+{
+   I2CHandle.Instance = I2C1;
+  I2CHandle.Init.Timing= 0x2000090E;
+  I2CHandle.Init.OwnAddress1= 0x68;
+  I2CHandle.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  I2CHandle.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  I2CHandle.Init.OwnAddress2 = 0;
+  I2CHandle.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+  I2CHandle.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  I2CHandle.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&I2CHandle) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure Analogue filter
+  */
+  if (HAL_I2CEx_ConfigAnalogFilter(&I2CHandle, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure Digital filter
+  */
+  if (HAL_I2CEx_ConfigDigitalFilter(&I2CHandle, 0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+}
 
 /**
   * @brief  TIM configuration
@@ -338,6 +384,14 @@ static void TIM_Config(void)
     Error_Handler();
   }
   
+}
+
+static void MX_GPIO_Init(void)
+{
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
 }
 
 /**

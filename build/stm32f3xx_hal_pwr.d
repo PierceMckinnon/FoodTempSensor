@@ -18,7 +18,6 @@ build/stm32f3xx_hal_pwr.o: \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_comp.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_comp_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_crc.h \
@@ -34,32 +33,10 @@ build/stm32f3xx_hal_pwr.o: \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pccard.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2s.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2s_ex.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_irda.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_irda_ex.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_iwdg.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_opamp.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_opamp_ex.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pcd.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_ll_usb.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pcd_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rtc.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rtc_ex.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_smartcard.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_smartcard_ex.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_smbus.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tsc.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_usart.h \
- Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_usart_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_wwdg.h
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
@@ -102,8 +79,6 @@ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h:
 
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h:
-
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_comp.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_comp_ex.h:
@@ -134,56 +109,12 @@ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h:
 
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2s.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2s_ex.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_irda.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_irda_ex.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_iwdg.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_opamp.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_opamp_ex.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pcd.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_ll_usb.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pcd_ex.h:
-
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h:
 
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rtc.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rtc_ex.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_smartcard.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_smartcard_ex.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_smbus.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h:
-
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tsc.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_usart.h:
-
-Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_usart_ex.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_wwdg.h:

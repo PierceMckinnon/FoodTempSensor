@@ -9,6 +9,9 @@
 
 #ifndef LiquidCrystal_h
 #define LiquidCrystal_h
+#include <stdio.h>
+#include <string.h>
+#include "stm32f3xx_hal.h"
 
 // commands
 #define LCD_CLEARDISPLAY 0x01
