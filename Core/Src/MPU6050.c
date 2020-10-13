@@ -31,7 +31,7 @@ void MPU6050_Init (void)
 			}
 		}
 		// Set DATA RATE of 1KHz by writing SMPLRT_DIV register
-		Data = 0x07;
+		Data = 0x7F;
 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000)!=HAL_OK)
 		 {
     		while(1)
@@ -93,25 +93,3 @@ void MPU6050_Read_Accel (void)
 	HAL_I2C_Mem_Read(&I2CHandle, MPU6050_ADDR, INT_STATUS_REG, 1, &Data, 1, 1000);
 
 }
-// uint8_t high;
-// 	uint8_t low;
-// 	HAL_I2C_Mem_Read (&I2CHandle, MPU6050_ADDR, 0x43, 1, &high, 1, 1000);
-// 	HAL_I2C_Mem_Read (&I2CHandle, MPU6050_ADDR, 0x44, 1, &low, 1, 1000);
-// Gyro_Y_RAW = (int16_t)(high << 8 | low);
-// void MPU6050_Read_Gyro (void)
-// {
-// 	//for debugging
-// 	if(HAL_OK ==HAL_I2C_IsDeviceReady(&I2CHandle,MPU6050_ADDR,20,1000)){
-// 	uint8_t Gyro_x_Data[2];	
-// 	// Read 2 BYTES of data starting from GYRO_XOUT_H register
-// 	HAL_I2C_Mem_Read(&I2CHandle, MPU6050_ADDR, 0x43, 1, Gyro_x_Data, 2, 1000);
-	
-
-// 	//Gyro_x_Data[0] holds high bits, shift to left by 8 and or with low bits for total raw value
-// 	Gyro_Y_RAW = (int16_t)(Gyro_x_Data[0] << 8 | Gyro_x_Data[1]);
-//     //set the the scale of gyro to +-250 by setting FS_Sel to zero
-//     //this results in sensitivity of 131 LSB so we must divide raw value by 131
-// 	GyroY = Gyro_Y_RAW/131.0;
-
-// }
-//}
