@@ -4,13 +4,13 @@ The intention of this project is to create a digital food thermometer as I am st
 I used a thermistor to detect temperature, and this temperature is then displayed on an LCD. 
 To learn I2C I incorperated an acceleromter which will be attached to the LCD so the screen adjusts if I flip it around.
 Learning outcomes of this project so far:
--How to effectively read datasheets
--How to configure a makefile with make 
--How to configure STM32 peripherals using STM32HAL
--How to setup I2C communication with STM32HAL
--How to set up interrupts over EXTI lines
--How to debug effectively 
--How to use the STM32CubeMX tool
+- How to effectively read datasheets
+- How to configure a makefile with make 
+- How to configure STM32 peripherals using STM32HAL
+- How to setup I2C communication with STM32HAL
+- How to set up interrupts over EXTI lines
+- How to debug effectively 
+- How to use the STM32CubeMX tool
   
 [This](https://github.com/PierceMckinnon/FoodTempSensor/tree/master/Core) is the core code
 ## Step 1: Setting up the thermistor
