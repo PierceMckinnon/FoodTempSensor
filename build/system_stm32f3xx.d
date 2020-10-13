@@ -23,6 +23,7 @@ build/system_stm32f3xx.o: Core/Src/system_stm32f3xx.c \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_crc_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dac.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dac_ex.h \
+ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_exti.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_sram.h \
@@ -89,6 +90,8 @@ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_crc_ex.h:
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dac.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dac_ex.h:
+
+Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_exti.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash.h:
 

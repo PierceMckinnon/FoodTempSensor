@@ -58,6 +58,7 @@
 #define HAL_CRC_MODULE_ENABLED
 #define HAL_DAC_MODULE_ENABLED
 #define HAL_DMA_MODULE_ENABLED
+#define HAL_EXTI_MODULE_ENABLED
 #define HAL_FLASH_MODULE_ENABLED
 #define HAL_SRAM_MODULE_ENABLED
 #define HAL_NOR_MODULE_ENABLED
@@ -223,6 +224,10 @@
 #ifdef HAL_DAC_MODULE_ENABLED
  #include "stm32f3xx_hal_dac.h"
 #endif /* HAL_DAC_MODULE_ENABLED */
+
+#ifdef HAL_EXTI_MODULE_ENABLED
+ #include "stm32f3xx_hal_exti.h"
+#endif /* HAL_CRC_MODULE_ENABLED */
 
 #ifdef HAL_FLASH_MODULE_ENABLED
  #include "stm32f3xx_hal_flash.h"

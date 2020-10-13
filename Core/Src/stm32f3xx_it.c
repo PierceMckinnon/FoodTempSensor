@@ -21,6 +21,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f3xx_it.h"
+#include "MPU6050.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -29,7 +30,7 @@
 /* USER CODE BEGIN TD */
 
 /* USER CODE END TD */
-
+extern I2C_HandleTypeDef I2CHandle;
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
@@ -189,7 +190,17 @@ void SysTick_Handler(void)
 
   /* USER CODE END SysTick_IRQn 1 */
 }
-
+void EXTI3_IRQHandler(void)
+{
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
+}
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  if(GPIO_Pin ==GPIO_PIN_3)
+  {
+    MPU6050_Read_Accel();
+  }
+}
 /******************************************************************************/
 /* STM32F3xx Peripheral Interrupt Handlers                                    */
 /* Add here the Interrupt Handlers for the used peripherals.                  */

@@ -75,7 +75,8 @@ TIM_HandleTypeDef    TimHandle;
 /* i2c handler declaration */
 I2C_HandleTypeDef I2CHandle;
 
-extern float  GyroY;
+extern float  ACCEL_X;
+extern uint8_t three[8];
 /* Variable containing ADC conversions results */
 __IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
 
@@ -114,20 +115,20 @@ int main(void)
 	double digital;
 	float Temp;
 	char buff[10];
+  
  
-  /* STM32F3xx HAL library initialization:
-       - Configure the Flash prefetch
-       - Configure the Systick to generate an interrupt each 1 msec
-       - Set NVIC Group Priority to 4
-       - Low Level Initialization
-     */
   HAL_Init();
 	LiquidCrystal(GPIOA, GPIO_PIN_1, GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_6, GPIO_PIN_7, GPIO_PIN_9, GPIO_PIN_8);
-
-	print("Temperature:");
-
-
-	setCursor(0,1);
+  
+  print("Temp:");
+  // createChar(0,three);
+  // setCursor(7,0);
+  // write(0);
+  setCursor(0,1);
+  
+ 
+	
+  
 
 
   
@@ -144,14 +145,15 @@ int main(void)
 
   /* Configure the TIM peripheral */
   TIM_Config();
-  MX_GPIO_Init();
   
+  MX_GPIO_Init();
   /* Configure the I2C peripheral */
   I2C_Config();
  
   
   MPU6050_Init();
   /*## Enable peripherals ####################################################*/
+  
 
   /* Timer counter enable */
   if (HAL_TIM_Base_Start(&TimHandle) != HAL_OK)
@@ -162,12 +164,13 @@ int main(void)
   }
   
 	HAL_ADC_Start(&AdcHandle);
-	
+  HAL_NVIC_SetPriority(EXTI3_IRQn , 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI3_IRQn);
   /* Infinite loop */
   while (1)
   {
 		
-		MPU6050_Read_Gyro();
+		//MPU6050_Read_Accel();
     HAL_ADC_PollForConversion(&AdcHandle, HAL_MAX_DELAY);
 		
 		//print("HEY");
@@ -189,7 +192,7 @@ int main(void)
 		setCursor(0,1);
     
     print(buff);
-    float_char(buff,GyroY);
+    float_char(buff,ACCEL_X);
     setCursor(8,1);
 	  
     print(buff);
@@ -308,7 +311,7 @@ static void I2C_Config(void)
 {
    I2CHandle.Instance = I2C1;
   I2CHandle.Init.Timing= 0x2000090E;
-  I2CHandle.Init.OwnAddress1= 0x68;
+  I2CHandle.Init.OwnAddress1= 0;
   I2CHandle.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   I2CHandle.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
   I2CHandle.Init.OwnAddress2 = 0;
@@ -388,10 +391,14 @@ static void TIM_Config(void)
 
 static void MX_GPIO_Init(void)
 {
-
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOB_CLK_ENABLE();
-
+  
+  GPIO_InitStruct.Pin=GPIO_PIN_3;
+  GPIO_InitStruct.Mode=GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull=GPIO_PULLDOWN;
+  HAL_GPIO_Init(GPIOB,&GPIO_InitStruct);
 }
 
 /**
