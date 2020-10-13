@@ -1,7 +1,7 @@
 # FoodTempSensor
 
 The intention of this project is to create a digital food thermometer as I am starting to cook more.
-I use a thermistor to detect temperature, and this temperature is displayed on an LCD. 
+I used a thermistor to detect temperature, and this temperature is then displayed on an LCD. 
 To learn I2C I incorperated an acceleromter which will be attached to the LCD so the screen adjusts if I flip it around.
 Learning outcomes of this project so far:
 -How to effectively read datasheets
