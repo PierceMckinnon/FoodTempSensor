@@ -1,17 +1,31 @@
 # FoodTempSensor
 
-Welcome to my Arduino Door Lock Project!
 The intention of this project is to create a digital food thermometer as I am starting to cook more.
 I use a thermistor to detect temperature, and this temperature is displayed on an LCD. 
 To learn I2C I incorperated an acceleromter which will be attached to the LCD so the screen adjusts if I flip it around.
+Learning outcomes of this project so far:
+-How to effectively read datasheets
+-How to configure a makefile with make 
+-How to configure STM32 peripherals using STM32HAL
+-How to setup I2C communication with STM32HAL
+-How to set up interrupts over EXTI lines
+-How to debug effectively 
+-How to use the STM32CubeMX tool
   
 [This](https://github.com/PierceMckinnon/FoodTempSensor/tree/master/Core) is the core code
 ## Step 1: Setting up the thermistor
-To detect when the door was closed I used the HC-SR04 ultrasonic sensor. I placed it a few centimeters from the closed door. When the door is closed the ultrasonic sensor read a distance of about 2.3cm. Thus, I set a threshold of 3cm for the detection of the door. When the sensor goes below this threshold, the lock closed. Below is a picture of the ultrasonic sensor.  
-  
-![]()   
+The thermistor resistance value changes with temperature and so I used a simple voltage divider circuit to determine the resistance of the unit.
+3.3-IR1-IR2=0
+V-IR2 =0
+I= V/R2
+
+3.3-(V/R2)*R1-V=0
+(-V+3.3)*R2/V=R1
+This can then be used together with the Steinhart and Hart equation to determine temperature. I configured the ADC so that I could get digital values to be used in the equation.
+To print the temperature onto the LCD I made a custom float to char function.
+
 ## Step 2: Configuring the accelerometer
-I needed a method to open the lock from inside my room. Using what I had available, I created two different mechanisms. The first is a push button and the second is an IR receiver. Once the IR receiver reads a specific hex value the lock opens. This hex value corresponds with the power button on the IR remote. Below is a picture of the main breadboard.  
+Configuring the accelerometer involved a lot of reading the datasheet to figure out what registers I needed.
     
 ## Step 3: Design a custom PCB and 3D print a unit to contain the device
 To be completed 
