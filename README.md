@@ -15,12 +15,11 @@ Learning outcomes of this project so far:
 [This](https://github.com/PierceMckinnon/FoodTempSensor/tree/master/Core) is the core code
 ## Step 1: Setting up the thermistor
 The thermistor resistance value changes with temperature and so I used a simple voltage divider circuit to determine the resistance of the unit.
-3.3-IR1-IR2=0
-V-IR2 =0
-I= V/R2
-
-3.3-(V/R2)*R1-V=0
-(-V+3.3)*R2/V=R1
+- 3.3-IR1-IR2=0
+- V-IR2 =0
+- I= V/R2
+- 3.3-(V/R2)*R1-V=0
+- (-V+3.3)*R2/V=R1
 This can then be used together with the Steinhart and Hart equation to determine temperature. I configured the ADC so that I could get digital values to be used in the equation.
 To print the temperature onto the LCD I made a custom float to char function.
 
