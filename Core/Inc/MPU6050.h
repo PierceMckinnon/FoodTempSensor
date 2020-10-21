@@ -1,7 +1,5 @@
 #ifndef MPU6050_H
 #define MPU6050_H
-#include "stm32f3xx_hal.h"
-#include "stm32f3xx_hal_i2c.h"
 
 #define MPU6050_ADDR 0xD0
 #define SMPLRT_DIV_REG 0x19
@@ -17,13 +15,8 @@
 
 // int16_t Gyro_Y_RAW;
 // float  GyroY;
-int16_t ACCEL_X_RAW;
-float ACCEL_X;
-extern I2C_HandleTypeDef I2CHandle;
 
 void MPU6050_Read_Accel(void);
 void MPU6050_Init(void);
-
-
 
 #endif

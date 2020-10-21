@@ -30,7 +30,6 @@
 /* USER CODE BEGIN TD */
 
 /* USER CODE END TD */
-extern I2C_HandleTypeDef I2CHandle;
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 

@@ -1,43 +1,4 @@
-/**
-  ******************************************************************************
-  * @file    ADC/ADC_AnalogWatchdog/Src/main.c
-  * @author  MCD Application Team
-  * @brief   This example provides a short description of how to use the ADC
-  *          peripheral to perform conversions with analog watchdog and 
-  *          interruptions. Other peripherals used: DMA, TIM (ADC group regular
-  *          conversions triggered by TIM, ADC group regular conversion data
-  *          transfered by DMA).
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
-  *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-  ******************************************************************************
-  */
 
-/* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "math.h"
 #include <string.h>
@@ -47,47 +8,11 @@
 #include "MPU6050.h"
 
 
-
-/** @addtogroup STM32F3xx_HAL_Examples
-  * @{
-  */
-
-/** @addtogroup ADC_AnalogWatchdog
-  * @{
-  */
-
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-#define RANGE_12BITS                   ((uint32_t)4095)    /* Max value with a full range of 12 bits */
-#define USERBUTTON_CLICK_COUNT_MAX     ((uint32_t)   4)    /* Maximum value of variable "UserButtonClickCount" */
-#define TIMER_FREQUENCY_HZ             ((uint32_t)1000)    /* Timer frequency (unit: Hz). With SysClk set to 72MHz, timer frequency TIMER_FREQUENCY_HZ range is min=1Hz, max=32.757kHz. */
-
-#define ADCCONVERTEDVALUES_BUFFER_SIZE 256                 /* Size of array aADCxConvertedValues[] */
-
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
-/* ADC handler declaration */
+#define TIMER_FREQUENCY_HZ             ((uint32_t)1000)    
 ADC_HandleTypeDef    AdcHandle;
-
-/* TIM handler declaration */
 TIM_HandleTypeDef    TimHandle;
-
-/* i2c handler declaration */
 I2C_HandleTypeDef I2CHandle;
 
-extern float  ACCEL_X;
-extern uint8_t three[8];
-/* Variable containing ADC conversions results */
-__IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
-
-/* Variables to manage push button on board: interface between ExtLine interruption and main program */
-uint8_t         ubUserButtonClickCount = 0;      /* Count number of clicks: Incremented after User Button interrupt */
-__IO uint8_t    ubUserButtonClickEvent = RESET;  /* Event detection: Set after User Button interrupt */
-
-/* Variable to report ADC analog watchdog status:   */
-/*   RESET <=> voltage into AWD window   */
-/*   SET   <=> voltage out of AWD window */
-uint8_t         ubAnalogWatchdogStatus = RESET;  /* Set into analog watchdog interrupt callback */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -98,14 +23,6 @@ static void I2C_Config(void);
 static void MX_GPIO_Init(void);
 
 
-
-/* Private functions ---------------------------------------------------------*/
-
-/**
-  * @brief  Main program.
-  * @param  None
-  * @retval None
-  */
 int main(void)
 {
 	uint16_t raw;
@@ -125,24 +42,12 @@ int main(void)
   // setCursor(7,0);
   // write(0);
   setCursor(0,1);
-  
- 
-	
-  
 
-
-  
   /* Configure the system clock to 64 MHz */
   SystemClock_Config();
-  
-  /*## Configure peripherals #################################################*/
-
   /* Configure the ADC peripheral */
   ADC_Config();
   
-  /* Run the ADC calibration in single-ended mode */  
-  
-
   /* Configure the TIM peripheral */
   TIM_Config();
   
@@ -150,9 +55,8 @@ int main(void)
   /* Configure the I2C peripheral */
   I2C_Config();
  
-  
   MPU6050_Init();
-  /*## Enable peripherals ####################################################*/
+  
   
 
   /* Timer counter enable */
@@ -187,7 +91,6 @@ int main(void)
 		x = 0.00102219653793705 + 0.000253179116444952*((float)log(resistance)) -0.000000000058799201163101*((float)powf(log(resistance),3)); 
 		Temp = 1.0/x - 273.15;
 
-		
     float_char(buff,Temp);
 		setCursor(0,1);
     
@@ -196,12 +99,8 @@ int main(void)
     setCursor(8,1);
 	  
     print(buff);
-  
-	
 		
 		HAL_Delay(1000);
-    
-  
 	}
 }
 
@@ -285,12 +184,6 @@ static void ADC_Config(void)
     /* ADC initialization error */
     Error_Handler();
   }
- 
-  /* Configuration of channel on ADCx regular group on sequencer rank 1 */
-  /* Note: Considering IT occurring after each ADC conversion if ADC          */
-  /*       conversion is out of the analog watchdog widow selected (ADC IT    */
-  /*       enabled), select sampling time and ADC clock with sufficient       */
-  /*       duration to not create an overhead situation in IRQHandler.        */
   sConfig.Channel      = ADC_CHANNEL_1;
   sConfig.Rank         = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_181CYCLES_5;
@@ -334,9 +227,6 @@ static void I2C_Config(void)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN I2C1_Init 2 */
-
-  /* USER CODE END I2C1_Init 2 */
 }
 
 /**
