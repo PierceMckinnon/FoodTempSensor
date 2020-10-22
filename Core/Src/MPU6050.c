@@ -49,26 +49,7 @@ void MPU6050_Init(void)
 					
 			}
 		}
-		// Set DATA SAMPLE RATE of 1KHz by writing SMPLRT_DIV register
-		Data = 0xDF;
-		check =0x00;
-		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000)!=HAL_OK)
-		 {
-			while(1)
-			{
-					
-			}
-			
-		}
-		HAL_I2C_Mem_Read(&I2CHandle, MPU6050_ADDR,SMPLRT_DIV_REG, 1,&check, 1, 1000);
-		if(check!=Data)
-		{
-			while(1)
-			{
-					
-			}
-		}
-	
+		
 
 		//setting range of accel to += 2g, disabling self test
 		Data = 0x00;
@@ -127,6 +108,27 @@ void MPU6050_Init(void)
 					
 			}
 		}
+
+		// Set DATA SAMPLE RATE of 1KHz by writing SMPLRT_DIV register
+		Data = 0xDF;
+		check =0x00;
+		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000)!=HAL_OK)
+		 {
+			while(1)
+			{
+					
+			}
+			
+		}
+		HAL_I2C_Mem_Read(&I2CHandle, MPU6050_ADDR,SMPLRT_DIV_REG, 1,&check, 1, 1000);
+		if(check!=Data)
+		{
+			while(1)
+			{
+					
+			}
+		}
+	
 		
 	}
 
