@@ -38,7 +38,7 @@ int main(void)
 	LiquidCrystal(GPIOA, GPIO_PIN_1, GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_6, GPIO_PIN_7, GPIO_PIN_9, GPIO_PIN_8);
   
   print("Temp:");
-  // createChar(0,three);
+  //createChar(0,three);
   // setCursor(7,0);
   // write(0);
   setCursor(0,1);
@@ -91,14 +91,41 @@ int main(void)
 		x = 0.00102219653793705 + 0.000253179116444952*((float)log(resistance)) -0.000000000058799201163101*((float)powf(log(resistance),3)); 
 		Temp = 1.0/x - 273.15;
 
-    float_char(buff,Temp);
-		setCursor(0,1);
+    // if(ACCEL_X<-0.2)
+    // {
+    //   //implement while loops, cleaner 
+    //   //check for 0 or 8
+    //   rightToLeft();
+    //   setCursor(15,15);
+    //   //t
+    //   //write(5)
+    //   //e
+    //   //write(6)
+    //   //m
+    //   //write(7)
+    //   //print("b:");
+    //   // setCursor(15,0);
+    //   // write(0);
+    //   // write(1);
+    //   // write(2);
+    //   // write(3);
+     
+      
+    // }
+    // else
+    // {
+      leftToRight();
+      float_char(buff,Temp,0);
+      setCursor(0,1);
+      
+      print(buff);
+      float_char(buff,ACCEL_X,0);
+      setCursor(8,1);
+      
+      print(buff);
+    // }
     
-    print(buff);
-    float_char(buff,ACCEL_X);
-    setCursor(8,1);
-	  
-    print(buff);
+   
 		
 		HAL_Delay(1000);
 	}

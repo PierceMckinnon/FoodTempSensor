@@ -70,7 +70,25 @@ void MPU6050_Init(void)
 					
 			}
 		}
-
+// Set DATA SAMPLE RATE of 1KHz by writing SMPLRT_DIV register
+		Data = 0xDF;
+		check =0x00;
+		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000)!=HAL_OK)
+		 {
+			while(1)
+			{
+					
+			}
+			
+		}
+		HAL_I2C_Mem_Read(&I2CHandle, MPU6050_ADDR,SMPLRT_DIV_REG, 1,&check, 1, 1000);
+		if(check!=Data)
+		{
+			while(1)
+			{
+					
+			}
+		}
 		//enabling interrupt on data ready 
 		Data = 0x01;
 		check = 0x00;
@@ -90,7 +108,7 @@ void MPU6050_Init(void)
 			}
 		}
 		
-		//configure the interrupt pin 
+		//configure the interrupt pin to be active high, send a 50us pulse
 		Data = 0x00;
 		check =0x00;
 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, INT_PIN_CFG_REG, 1, &Data, 1, 1000)!=HAL_OK)
@@ -108,28 +126,6 @@ void MPU6050_Init(void)
 					
 			}
 		}
-
-		// Set DATA SAMPLE RATE of 1KHz by writing SMPLRT_DIV register
-		Data = 0xDF;
-		check =0x00;
-		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000)!=HAL_OK)
-		 {
-			while(1)
-			{
-					
-			}
-			
-		}
-		HAL_I2C_Mem_Read(&I2CHandle, MPU6050_ADDR,SMPLRT_DIV_REG, 1,&check, 1, 1000);
-		if(check!=Data)
-		{
-			while(1)
-			{
-					
-			}
-		}
-	
-		
 	}
 
 }

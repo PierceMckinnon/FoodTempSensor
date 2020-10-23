@@ -2159,24 +2159,24 @@ LOAD c:/stm32projects/toolchain/gcc-arm/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb
  .debug_ranges  0x00000de0       0x18 build/system_stm32f3xx.o
  .debug_ranges  0x00000df8       0x20 build/startup_stm32f303xe.o
 
-.debug_line     0x00000000    0x110ad
+.debug_line     0x00000000    0x110a6
  .debug_line    0x00000000      0x801 build/main.o
  .debug_line    0x00000801      0x333 build/stm32f3xx_it.o
- .debug_line    0x00000b34      0x379 build/stm32f3xx_hal_msp.o
- .debug_line    0x00000ead     0x29a1 build/stm32f3xx_hal_adc_ex.o
- .debug_line    0x0000384e     0x3ad9 build/stm32f3xx_hal_tim.o
- .debug_line    0x00007327     0x1310 build/stm32f3xx_hal_tim_ex.o
- .debug_line    0x00008637      0x4e7 build/stm32f3xx_hal.o
- .debug_line    0x00008b1e     0x11b4 build/stm32f3xx_hal_rcc.o
- .debug_line    0x00009cd2      0x6a8 build/stm32f3xx_hal_gpio.o
- .debug_line    0x0000a37a      0x747 build/stm32f3xx_hal_cortex.o
- .debug_line    0x0000aac1     0x4de9 build/stm32f3xx_hal_i2c.o
- .debug_line    0x0000f8aa      0x4e2 build/stm32f3xx_hal_i2c_ex.o
- .debug_line    0x0000fd8c      0xa1d build/LiquidCrystal.o
- .debug_line    0x000107a9      0x42d build/MPU6050.o
- .debug_line    0x00010bd6      0x209 build/FloatToChar.o
- .debug_line    0x00010ddf      0x25b build/system_stm32f3xx.o
- .debug_line    0x0001103a       0x73 build/startup_stm32f303xe.o
+ .debug_line    0x00000b34      0x372 build/stm32f3xx_hal_msp.o
+ .debug_line    0x00000ea6     0x29a1 build/stm32f3xx_hal_adc_ex.o
+ .debug_line    0x00003847     0x3ad9 build/stm32f3xx_hal_tim.o
+ .debug_line    0x00007320     0x1310 build/stm32f3xx_hal_tim_ex.o
+ .debug_line    0x00008630      0x4e7 build/stm32f3xx_hal.o
+ .debug_line    0x00008b17     0x11b4 build/stm32f3xx_hal_rcc.o
+ .debug_line    0x00009ccb      0x6a8 build/stm32f3xx_hal_gpio.o
+ .debug_line    0x0000a373      0x747 build/stm32f3xx_hal_cortex.o
+ .debug_line    0x0000aaba     0x4de9 build/stm32f3xx_hal_i2c.o
+ .debug_line    0x0000f8a3      0x4e2 build/stm32f3xx_hal_i2c_ex.o
+ .debug_line    0x0000fd85      0xa1d build/LiquidCrystal.o
+ .debug_line    0x000107a2      0x42d build/MPU6050.o
+ .debug_line    0x00010bcf      0x209 build/FloatToChar.o
+ .debug_line    0x00010dd8      0x25b build/system_stm32f3xx.o
+ .debug_line    0x00011033       0x73 build/startup_stm32f303xe.o
 
 .debug_str      0x00000000     0x4cfb
  .debug_str     0x00000000     0x1857 build/main.o
