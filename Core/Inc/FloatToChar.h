@@ -3,5 +3,6 @@
 #define FloatToChar_h
 
 void float_char(char* Buffer,float Fpass, int z);
+void initialize(void);
 
 #endif

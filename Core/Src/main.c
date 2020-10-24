@@ -22,18 +22,15 @@ static void TIM_Config(void);
 static void I2C_Config(void);
 static void MX_GPIO_Init(void);
 
+float Temp;
 
 int main(void)
 {
 	uint16_t raw;
-//char str[80];
 	double resistance;
 	float x;
 	double digital;
-	float Temp;
-	char buff[10];
-  
- 
+	
   HAL_Init();
 	LiquidCrystal(GPIOA, GPIO_PIN_1, GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_6, GPIO_PIN_7, GPIO_PIN_9, GPIO_PIN_8);
   
@@ -57,7 +54,7 @@ int main(void)
  
   MPU6050_Init();
   
-  
+  initialize();
 
   /* Timer counter enable */
   if (HAL_TIM_Base_Start(&TimHandle) != HAL_OK)
@@ -90,13 +87,29 @@ int main(void)
 	
 		x = 0.00102219653793705 + 0.000253179116444952*((float)log(resistance)) -0.000000000058799201163101*((float)powf(log(resistance),3)); 
 		Temp = 1.0/x - 273.15;
+    printval();
 
-    // if(ACCEL_X<-0.2)
+		HAL_Delay(1000);
+	}
+}
+
+
+void printval()
+{
+ 
+  //if(ACCEL_X<-0.2)
+    //{
+    //implement while loops, cleaner 
+    //check for 0 or 8
+    // rightToLeft();
+    // setCursor(15,15);
+    // int i=5;
+    // while(i<=7)
     // {
-    //   //implement while loops, cleaner 
-    //   //check for 0 or 8
-    //   rightToLeft();
-    //   setCursor(15,15);
+    //   write(i);
+    //   i++;
+    // }
+    // print("b:");
     //   //t
     //   //write(5)
     //   //e
@@ -105,6 +118,16 @@ int main(void)
     //   //write(7)
     //   //print("b:");
     //   // setCursor(15,0);
+    // i=0;
+    // while(i<=3)
+    // {
+    //   if(i==2)
+    //   {
+    //     print('.');
+    //   }
+    //   write(i);
+    //   i++;
+    // }
     //   // write(0);
     //   // write(1);
     //   // write(2);
@@ -114,6 +137,7 @@ int main(void)
     // }
     // else
     // {
+      char buff[10];
       leftToRight();
       float_char(buff,Temp,0);
       setCursor(0,1);
@@ -123,14 +147,8 @@ int main(void)
       setCursor(8,1);
       
       print(buff);
-    // }
-    
-   
-		
-		HAL_Delay(1000);
-	}
+    // }  
 }
-
 /**
   * @brief  System Clock Configuration
   *         The system Clock is configured as follow : 

@@ -40,9 +40,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f3xx_hal.h"
 
-//extern uint8_t three[8];
 extern I2C_HandleTypeDef I2CHandle;
 extern float  ACCEL_X;
+void printval(void);
 
 #endif /* __MAIN_H */
 

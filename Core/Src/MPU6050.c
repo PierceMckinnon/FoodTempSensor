@@ -2,7 +2,8 @@
 #include "stm32f3xx_hal_i2c.h"
 #include "MPU6050.h"
 
-float  ACCEL_X =0;
+float ACCEL_X=0;
+int i=0;
 void MPU6050_Init(void)
 {
 	uint8_t check;
@@ -152,7 +153,18 @@ void MPU6050_Read_Accel (void)
 	//setting the fsRange to +-2 the lsb sensitivity is 16384.0 so divide to get value in g's
 
 	ACCEL_X = ACCEL_X_RAW/16384.0;
+	// if(ACCEL_X<-0.2 && i==0)
+	// {
+	// 	printval();
+	// 	i=1;
+	// }
+	// else if(ACCEL_X>0.2 && i==1)
+	// {
+	// 	printval();
+	// 	i=0;
+	// }
 
+	
 	//clear int_status register
 	if(HAL_I2C_Mem_Read(&I2CHandle, MPU6050_ADDR, INT_STATUS_REG, 1, &Data, 1, 1000)!=HAL_OK)
 	{

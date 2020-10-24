@@ -13,9 +13,6 @@
 #define PWR_MGMT_1_REG 0x6B
 #define WHO_AM_I_REG 0x75
 
-// int16_t Gyro_Y_RAW;
-// float  GyroY;
-
 void MPU6050_Read_Accel(void);
 void MPU6050_Init(void);
 

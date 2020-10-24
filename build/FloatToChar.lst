@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\cc1Vyl0O.s 			page 1
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -17,329 +17,650 @@ ARM GAS  C:\Users\pierc\AppData\Local\Temp\cc1Vyl0O.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.global	__aeabi_i2d
-  18              		.global	__aeabi_ddiv
-  19              		.global	__aeabi_dcmpge
-  20              		.global	__aeabi_d2iz
-  21              		.section	.text.float_char,"ax",%progbits
-  22              		.align	1
-  23              		.global	float_char
-  24              		.arch armv7e-m
-  25              		.syntax unified
-  26              		.thumb
-  27              		.thumb_func
-  28              		.fpu fpv4-sp-d16
-  30              	float_char:
-  31              	.LVL0:
-  32              	.LFB0:
-  33              		.file 1 "Core/Src/FloatToChar.c"
-   1:Core/Src/FloatToChar.c **** #include "FloatToChar.h"
-   2:Core/Src/FloatToChar.c **** #include "math.h"
-   3:Core/Src/FloatToChar.c **** //want to take the floating point rounded to 2 decimal places
-   4:Core/Src/FloatToChar.c **** //and convert it to char to be printed to the lcd
-   5:Core/Src/FloatToChar.c **** //This can be done by add the float to '0'
-   6:Core/Src/FloatToChar.c **** void float_char(char *buff, float y)
-   7:Core/Src/FloatToChar.c **** {
-  34              		.loc 1 7 1 view -0
-  35              		.cfi_startproc
-  36              		@ args = 0, pretend = 0, frame = 0
-  37              		@ frame_needed = 0, uses_anonymous_args = 0
-  38              		.loc 1 7 1 is_stmt 0 view .LVU1
-  39 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
-  40              	.LCFI0:
-  41              		.cfi_def_cfa_offset 32
-  42              		.cfi_offset 3, -32
-  43              		.cfi_offset 4, -28
-  44              		.cfi_offset 5, -24
-  45              		.cfi_offset 6, -20
-  46              		.cfi_offset 7, -16
-  47              		.cfi_offset 8, -12
-  48              		.cfi_offset 9, -8
-  49              		.cfi_offset 14, -4
-  50 0004 0546     		mov	r5, r0
-   8:Core/Src/FloatToChar.c ****     //deal with decimals and units in front of decimal point
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\cc1Vyl0O.s 			page 2
+  17              		.section	.text.initialize,"ax",%progbits
+  18              		.align	1
+  19              		.global	initialize
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	initialize:
+  27              	.LFB133:
+  28              		.file 1 "Core/Src/FloatToChar.c"
+   1:Core/Src/FloatToChar.c **** 
+   2:Core/Src/FloatToChar.c **** #include "LiquidCrystal.h"
+   3:Core/Src/FloatToChar.c **** #include "FloatToChar.h"
+   4:Core/Src/FloatToChar.c **** #include "math.h"
+   5:Core/Src/FloatToChar.c **** 
+   6:Core/Src/FloatToChar.c **** 
+   7:Core/Src/FloatToChar.c **** uint8_t one[8] = {
+   8:Core/Src/FloatToChar.c **** 0x00,
+   9:Core/Src/FloatToChar.c **** 0x0E,
+  10:Core/Src/FloatToChar.c **** 0x04,
+  11:Core/Src/FloatToChar.c **** 0x04,
+  12:Core/Src/FloatToChar.c **** 0x04,
+  13:Core/Src/FloatToChar.c **** 0x04,
+  14:Core/Src/FloatToChar.c **** 0x05,
+  15:Core/Src/FloatToChar.c **** 0x04
+  16:Core/Src/FloatToChar.c **** };
+  17:Core/Src/FloatToChar.c **** uint8_t two[8] = {
+  18:Core/Src/FloatToChar.c **** 0x00,
+  19:Core/Src/FloatToChar.c **** 0x1F,
+  20:Core/Src/FloatToChar.c **** 0x02,
+  21:Core/Src/FloatToChar.c **** 0x04,
+  22:Core/Src/FloatToChar.c **** 0x08,
+  23:Core/Src/FloatToChar.c **** 0x10,
+  24:Core/Src/FloatToChar.c **** 0x11,
+  25:Core/Src/FloatToChar.c **** 0x0E
+  26:Core/Src/FloatToChar.c **** };
+  27:Core/Src/FloatToChar.c **** uint8_t three[8] = {
+  28:Core/Src/FloatToChar.c **** 0x00,
+  29:Core/Src/FloatToChar.c **** 0x0D,
+  30:Core/Src/FloatToChar.c **** 0x20,
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 2
 
 
-   9:Core/Src/FloatToChar.c ****     //decimals
-  10:Core/Src/FloatToChar.c ****     int dec; 
-  51              		.loc 1 10 5 is_stmt 1 view .LVU2
-  11:Core/Src/FloatToChar.c ****     //units in front of decimal
-  12:Core/Src/FloatToChar.c ****     int units;
-  52              		.loc 1 12 5 view .LVU3
-  13:Core/Src/FloatToChar.c ****     //have to consider negative floats as well 
-  14:Core/Src/FloatToChar.c ****     //dealing with floats from -99->99
-  15:Core/Src/FloatToChar.c ****     //dealing with units left of decimal first positive and negative
-  16:Core/Src/FloatToChar.c ****     if(y<0)
-  53              		.loc 1 16 5 view .LVU4
-  54              		.loc 1 16 7 is_stmt 0 view .LVU5
-  55 0006 B5EEC00A 		vcmpe.f32	s0, #0
-  56 000a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
-  57 000e 2ED4     		bmi	.L12
-  17:Core/Src/FloatToChar.c ****     {
-  18:Core/Src/FloatToChar.c ****         //only want to deal with max 4 digits
-  19:Core/Src/FloatToChar.c ****         dec = ((int)(y*-100))%100;
-  20:Core/Src/FloatToChar.c ****         units = (int)(y*-1);
-  21:Core/Src/FloatToChar.c ****         *buff++ = '-';
-  22:Core/Src/FloatToChar.c ****       
-  23:Core/Src/FloatToChar.c ****       
-  24:Core/Src/FloatToChar.c ****     }
-  25:Core/Src/FloatToChar.c ****     else 
-  26:Core/Src/FloatToChar.c ****     {
-  27:Core/Src/FloatToChar.c ****         dec = ((int)(y*100))%100;
-  58              		.loc 1 27 9 is_stmt 1 view .LVU6
-  59              		.loc 1 27 23 is_stmt 0 view .LVU7
-  60 0010 DFED457A 		vldr.32	s15, .L14+8
-  61 0014 60EE277A 		vmul.f32	s15, s0, s15
-  62              		.loc 1 27 16 view .LVU8
-  63 0018 FDEEE77A 		vcvt.s32.f32	s15, s15
-  64 001c 17EE903A 		vmov	r3, s15	@ int
-  65              		.loc 1 27 13 view .LVU9
-  66 0020 424A     		ldr	r2, .L14+12
-  67 0022 82FB0312 		smull	r1, r2, r2, r3
-  68 0026 DF17     		asrs	r7, r3, #31
-  69 0028 C7EB6217 		rsb	r7, r7, r2, asr #5
-  70 002c 6422     		movs	r2, #100
-  71 002e 02FB1737 		mls	r7, r2, r7, r3
-  72              	.LVL1:
-  28:Core/Src/FloatToChar.c ****         units = (int)(y*1);
-  73              		.loc 1 28 9 is_stmt 1 view .LVU10
-  74              		.loc 1 28 15 is_stmt 0 view .LVU11
-  75 0032 FDEEC07A 		vcvt.s32.f32	s15, s0
-  76 0036 17EE906A 		vmov	r6, s15	@ int
-  77              	.LVL2:
-  78              	.L4:
-  29:Core/Src/FloatToChar.c ****     }
-  30:Core/Src/FloatToChar.c ****     //only need 4 values, easiest way to do this is line by line since looking for specific output.
-  31:Core/Src/FloatToChar.c ****     //*buff++ == assign value to dereferenced pointer then increment pointer
-  32:Core/Src/FloatToChar.c ****     int i = 0;
-  79              		.loc 1 32 5 is_stmt 1 view .LVU12
-  33:Core/Src/FloatToChar.c ****     while((units/pow(10,i))>=1)
-  80              		.loc 1 33 5 view .LVU13
-  32:Core/Src/FloatToChar.c ****     while((units/pow(10,i))>=1)
-  81              		.loc 1 32 9 is_stmt 0 view .LVU14
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\cc1Vyl0O.s 			page 3
+  31:Core/Src/FloatToChar.c **** 0x10,
+  32:Core/Src/FloatToChar.c **** 0x08,
+  33:Core/Src/FloatToChar.c **** 0x04,
+  34:Core/Src/FloatToChar.c **** 0x08,
+  35:Core/Src/FloatToChar.c **** 0x1F
+  36:Core/Src/FloatToChar.c **** };
+  37:Core/Src/FloatToChar.c **** uint8_t four[8] = {
+  38:Core/Src/FloatToChar.c **** 0x00,
+  39:Core/Src/FloatToChar.c **** 0x08,
+  40:Core/Src/FloatToChar.c **** 0x08,
+  41:Core/Src/FloatToChar.c **** 0x1F,
+  42:Core/Src/FloatToChar.c **** 0x09,
+  43:Core/Src/FloatToChar.c **** 0x0A,
+  44:Core/Src/FloatToChar.c **** 0x0C,
+  45:Core/Src/FloatToChar.c **** 0x08
+  46:Core/Src/FloatToChar.c **** };
+  47:Core/Src/FloatToChar.c **** 
+  48:Core/Src/FloatToChar.c **** uint8_t five[8] = {
+  49:Core/Src/FloatToChar.c **** 0x00,
+  50:Core/Src/FloatToChar.c **** 0x0E,
+  51:Core/Src/FloatToChar.c **** 0x11,
+  52:Core/Src/FloatToChar.c **** 0x10,
+  53:Core/Src/FloatToChar.c **** 0x10,
+  54:Core/Src/FloatToChar.c **** 0x0F,
+  55:Core/Src/FloatToChar.c **** 0x01,
+  56:Core/Src/FloatToChar.c **** 0x1F
+  57:Core/Src/FloatToChar.c **** };
+  58:Core/Src/FloatToChar.c **** uint8_t six[8] = {
+  59:Core/Src/FloatToChar.c **** 0x00,
+  60:Core/Src/FloatToChar.c **** 0x0E,
+  61:Core/Src/FloatToChar.c **** 0x11,
+  62:Core/Src/FloatToChar.c **** 0x11,
+  63:Core/Src/FloatToChar.c **** 0x0F,
+  64:Core/Src/FloatToChar.c **** 0x01,
+  65:Core/Src/FloatToChar.c **** 0x02,
+  66:Core/Src/FloatToChar.c **** 0x0C
+  67:Core/Src/FloatToChar.c **** };
+  68:Core/Src/FloatToChar.c **** uint8_t seven[8] = {
+  69:Core/Src/FloatToChar.c **** 0x00,
+  70:Core/Src/FloatToChar.c **** 0x02,
+  71:Core/Src/FloatToChar.c **** 0x02,
+  72:Core/Src/FloatToChar.c **** 0x02,
+  73:Core/Src/FloatToChar.c **** 0x04,
+  74:Core/Src/FloatToChar.c **** 0x08,
+  75:Core/Src/FloatToChar.c **** 0x11,
+  76:Core/Src/FloatToChar.c **** 0x1F
+  77:Core/Src/FloatToChar.c **** };
+  78:Core/Src/FloatToChar.c **** uint8_t nine[8] = {
+  79:Core/Src/FloatToChar.c **** 0x00,
+  80:Core/Src/FloatToChar.c **** 0x06,
+  81:Core/Src/FloatToChar.c **** 0x08,
+  82:Core/Src/FloatToChar.c **** 0x10,
+  83:Core/Src/FloatToChar.c **** 0x1E,
+  84:Core/Src/FloatToChar.c **** 0x11,
+  85:Core/Src/FloatToChar.c **** 0x11,
+  86:Core/Src/FloatToChar.c **** 0x0E
+  87:Core/Src/FloatToChar.c **** };
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 3
 
 
-  82 003a 0024     		movs	r4, #0
-  83              	.LVL3:
-  84              	.L5:
-  85              		.loc 1 33 10 is_stmt 1 view .LVU15
-  86              		.loc 1 33 18 is_stmt 0 view .LVU16
-  87 003c 2046     		mov	r0, r4
-  88 003e FFF7FEFF 		bl	__aeabi_i2d
-  89              	.LVL4:
-  90 0042 41EC110B 		vmov	d1, r0, r1
-  91 0046 9FED360B 		vldr.64	d0, .L14
-  92 004a FFF7FEFF 		bl	pow
-  93              	.LVL5:
-  94 004e 59EC108B 		vmov	r8, r9, d0
-  95              		.loc 1 33 17 view .LVU17
-  96 0052 3046     		mov	r0, r6
-  97 0054 FFF7FEFF 		bl	__aeabi_i2d
-  98              	.LVL6:
-  99 0058 4246     		mov	r2, r8
- 100 005a 4B46     		mov	r3, r9
- 101 005c FFF7FEFF 		bl	__aeabi_ddiv
- 102              	.LVL7:
- 103              		.loc 1 33 10 view .LVU18
- 104 0060 0022     		movs	r2, #0
- 105 0062 334B     		ldr	r3, .L14+16
- 106 0064 FFF7FEFF 		bl	__aeabi_dcmpge
- 107              	.LVL8:
- 108 0068 E0B1     		cbz	r0, .L13
-  34:Core/Src/FloatToChar.c ****     {
-  35:Core/Src/FloatToChar.c ****         i++;
- 109              		.loc 1 35 9 is_stmt 1 view .LVU19
- 110              		.loc 1 35 10 is_stmt 0 view .LVU20
- 111 006a 0134     		adds	r4, r4, #1
- 112              	.LVL9:
- 113              		.loc 1 35 10 view .LVU21
- 114 006c E6E7     		b	.L5
- 115              	.LVL10:
- 116              	.L12:
-  19:Core/Src/FloatToChar.c ****         units = (int)(y*-1);
- 117              		.loc 1 19 9 is_stmt 1 view .LVU22
-  19:Core/Src/FloatToChar.c ****         units = (int)(y*-1);
- 118              		.loc 1 19 23 is_stmt 0 view .LVU23
- 119 006e DFED317A 		vldr.32	s15, .L14+20
- 120 0072 60EE277A 		vmul.f32	s15, s0, s15
-  19:Core/Src/FloatToChar.c ****         units = (int)(y*-1);
- 121              		.loc 1 19 16 view .LVU24
- 122 0076 FDEEE77A 		vcvt.s32.f32	s15, s15
- 123 007a 17EE903A 		vmov	r3, s15	@ int
-  19:Core/Src/FloatToChar.c ****         units = (int)(y*-1);
- 124              		.loc 1 19 13 view .LVU25
- 125 007e 2B4A     		ldr	r2, .L14+12
- 126 0080 82FB0312 		smull	r1, r2, r2, r3
- 127 0084 DF17     		asrs	r7, r3, #31
- 128 0086 C7EB6217 		rsb	r7, r7, r2, asr #5
- 129 008a 6422     		movs	r2, #100
- 130 008c 02FB1737 		mls	r7, r2, r7, r3
- 131              	.LVL11:
-  20:Core/Src/FloatToChar.c ****         *buff++ = '-';
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\cc1Vyl0O.s 			page 4
+  88:Core/Src/FloatToChar.c **** uint8_t em[8] = {
+  89:Core/Src/FloatToChar.c **** 0x00,
+  90:Core/Src/FloatToChar.c **** 0x06,
+  91:Core/Src/FloatToChar.c **** 0x08,
+  92:Core/Src/FloatToChar.c **** 0x10,
+  93:Core/Src/FloatToChar.c **** 0x1E,
+  94:Core/Src/FloatToChar.c **** 0x11,
+  95:Core/Src/FloatToChar.c **** 0x11,
+  96:Core/Src/FloatToChar.c **** 0x0E
+  97:Core/Src/FloatToChar.c **** };
+  98:Core/Src/FloatToChar.c **** uint8_t eee[8] = {
+  99:Core/Src/FloatToChar.c **** 0x00,
+ 100:Core/Src/FloatToChar.c **** 0x1F,
+ 101:Core/Src/FloatToChar.c **** 0x01,
+ 102:Core/Src/FloatToChar.c **** 0x01,
+ 103:Core/Src/FloatToChar.c **** 0x0F,
+ 104:Core/Src/FloatToChar.c **** 0x01,
+ 105:Core/Src/FloatToChar.c **** 0x01,
+ 106:Core/Src/FloatToChar.c **** 0x1F
+ 107:Core/Src/FloatToChar.c **** };
+ 108:Core/Src/FloatToChar.c **** uint8_t tee[8] = {
+ 109:Core/Src/FloatToChar.c **** 0x00,
+ 110:Core/Src/FloatToChar.c **** 0x04,
+ 111:Core/Src/FloatToChar.c **** 0x04,
+ 112:Core/Src/FloatToChar.c **** 0x04,
+ 113:Core/Src/FloatToChar.c **** 0x04,
+ 114:Core/Src/FloatToChar.c **** 0x04,
+ 115:Core/Src/FloatToChar.c **** 0x04,
+ 116:Core/Src/FloatToChar.c **** 0x1F
+ 117:Core/Src/FloatToChar.c **** };
+ 118:Core/Src/FloatToChar.c **** 
+ 119:Core/Src/FloatToChar.c **** //want to take the floating point rounded to 2 decimal places
+ 120:Core/Src/FloatToChar.c **** //and convert it to char to be printed to the lcd
+ 121:Core/Src/FloatToChar.c **** //This can be done by add the float to '0'
+ 122:Core/Src/FloatToChar.c **** uint8_t* specialchars[13] = {NULL,one,two,three,four,five,six,seven,NULL,nine,tee,eee,em};
+ 123:Core/Src/FloatToChar.c **** //call in main
+ 124:Core/Src/FloatToChar.c **** void initialize()
+ 125:Core/Src/FloatToChar.c **** {
+  29              		.loc 1 125 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+ 126:Core/Src/FloatToChar.c ****         createChar(5,specialchars[10]);
+  38              		.loc 1 126 9 view .LVU1
+  39 0002 074C     		ldr	r4, .L3
+  40 0004 A16A     		ldr	r1, [r4, #40]
+  41 0006 0520     		movs	r0, #5
+  42 0008 FFF7FEFF 		bl	createChar
+  43              	.LVL0:
+ 127:Core/Src/FloatToChar.c ****         createChar(6,specialchars[11]);
+  44              		.loc 1 127 9 view .LVU2
+  45 000c E16A     		ldr	r1, [r4, #44]
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 4
 
 
- 132              		.loc 1 20 9 is_stmt 1 view .LVU26
-  20:Core/Src/FloatToChar.c ****         *buff++ = '-';
- 133              		.loc 1 20 24 is_stmt 0 view .LVU27
- 134 0090 B1EE400A 		vneg.f32	s0, s0
- 135              	.LVL12:
-  20:Core/Src/FloatToChar.c ****         *buff++ = '-';
- 136              		.loc 1 20 15 view .LVU28
- 137 0094 FDEEC07A 		vcvt.s32.f32	s15, s0
- 138 0098 17EE906A 		vmov	r6, s15	@ int
- 139              	.LVL13:
-  21:Core/Src/FloatToChar.c ****       
- 140              		.loc 1 21 9 is_stmt 1 view .LVU29
-  21:Core/Src/FloatToChar.c ****       
- 141              		.loc 1 21 17 is_stmt 0 view .LVU30
- 142 009c 2D23     		movs	r3, #45
- 143 009e 05F8013B 		strb	r3, [r5], #1
- 144              	.LVL14:
-  21:Core/Src/FloatToChar.c ****       
- 145              		.loc 1 21 17 view .LVU31
- 146 00a2 CAE7     		b	.L4
- 147              	.LVL15:
- 148              	.L13:
-  36:Core/Src/FloatToChar.c ****     }
-  37:Core/Src/FloatToChar.c ****     i--;
- 149              		.loc 1 37 5 is_stmt 1 view .LVU32
- 150              		.loc 1 37 6 is_stmt 0 view .LVU33
- 151 00a4 013C     		subs	r4, r4, #1
- 152              	.LVL16:
-  38:Core/Src/FloatToChar.c ****     while(i>=0)
- 153              		.loc 1 38 5 is_stmt 1 view .LVU34
- 154              		.loc 1 38 10 is_stmt 0 view .LVU35
- 155 00a6 1CE0     		b	.L7
- 156              	.L8:
-  39:Core/Src/FloatToChar.c ****     {
-  40:Core/Src/FloatToChar.c ****         *buff++=(units/(int)pow(10,i))%10 + '0';
- 157              		.loc 1 40 9 is_stmt 1 view .LVU36
- 158              		.loc 1 40 29 is_stmt 0 view .LVU37
- 159 00a8 2046     		mov	r0, r4
- 160 00aa FFF7FEFF 		bl	__aeabi_i2d
- 161              	.LVL17:
- 162 00ae 41EC110B 		vmov	d1, r0, r1
- 163 00b2 9FED1B0B 		vldr.64	d0, .L14
- 164 00b6 FFF7FEFF 		bl	pow
- 165              	.LVL18:
- 166 00ba 51EC100B 		vmov	r0, r1, d0
- 167              		.loc 1 40 24 view .LVU38
- 168 00be FFF7FEFF 		bl	__aeabi_d2iz
- 169              	.LVL19:
- 170              		.loc 1 40 23 view .LVU39
- 171 00c2 96FBF0F0 		sdiv	r0, r6, r0
- 172              		.loc 1 40 39 view .LVU40
- 173 00c6 1C4A     		ldr	r2, .L14+24
- 174 00c8 82FB0032 		smull	r3, r2, r2, r0
- 175 00cc C317     		asrs	r3, r0, #31
- 176 00ce C3EBA203 		rsb	r3, r3, r2, asr #2
- 177 00d2 03EB8303 		add	r3, r3, r3, lsl #2
- 178 00d6 A0EB4303 		sub	r3, r0, r3, lsl #1
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\cc1Vyl0O.s 			page 5
+  46 000e 0620     		movs	r0, #6
+  47 0010 FFF7FEFF 		bl	createChar
+  48              	.LVL1:
+ 128:Core/Src/FloatToChar.c ****         createChar(7,specialchars[12]);
+  49              		.loc 1 128 9 view .LVU3
+  50 0014 216B     		ldr	r1, [r4, #48]
+  51 0016 0720     		movs	r0, #7
+  52 0018 FFF7FEFF 		bl	createChar
+  53              	.LVL2:
+ 129:Core/Src/FloatToChar.c **** }
+  54              		.loc 1 129 1 is_stmt 0 view .LVU4
+  55 001c 10BD     		pop	{r4, pc}
+  56              	.L4:
+  57 001e 00BF     		.align	2
+  58              	.L3:
+  59 0020 00000000 		.word	.LANCHOR0
+  60              		.cfi_endproc
+  61              	.LFE133:
+  63              		.global	__aeabi_i2d
+  64              		.global	__aeabi_ddiv
+  65              		.global	__aeabi_dcmpge
+  66              		.global	__aeabi_d2iz
+  67              		.section	.text.float_char,"ax",%progbits
+  68              		.align	1
+  69              		.global	float_char
+  70              		.syntax unified
+  71              		.thumb
+  72              		.thumb_func
+  73              		.fpu fpv4-sp-d16
+  75              	float_char:
+  76              	.LVL3:
+  77              	.LFB134:
+ 130:Core/Src/FloatToChar.c **** 
+ 131:Core/Src/FloatToChar.c **** void float_char(char *buff, float y, int z)
+ 132:Core/Src/FloatToChar.c **** {
+  78              		.loc 1 132 1 is_stmt 1 view -0
+  79              		.cfi_startproc
+  80              		@ args = 0, pretend = 0, frame = 0
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+  82              		.loc 1 132 1 is_stmt 0 view .LVU6
+  83 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+  84              	.LCFI1:
+  85              		.cfi_def_cfa_offset 32
+  86              		.cfi_offset 3, -32
+  87              		.cfi_offset 4, -28
+  88              		.cfi_offset 5, -24
+  89              		.cfi_offset 6, -20
+  90              		.cfi_offset 7, -16
+  91              		.cfi_offset 8, -12
+  92              		.cfi_offset 9, -8
+  93              		.cfi_offset 14, -4
+  94 0004 0546     		mov	r5, r0
+ 133:Core/Src/FloatToChar.c ****     //deal with decimals and units in front of decimal point
+ 134:Core/Src/FloatToChar.c ****     //decimals
+ 135:Core/Src/FloatToChar.c ****     int dec; 
+  95              		.loc 1 135 5 is_stmt 1 view .LVU7
+ 136:Core/Src/FloatToChar.c ****     //units in front of decimal
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 5
 
 
- 179              	.LVL20:
- 180              		.loc 1 40 43 view .LVU41
- 181 00da 3033     		adds	r3, r3, #48
- 182              		.loc 1 40 16 view .LVU42
- 183 00dc 05F8013B 		strb	r3, [r5], #1
- 184              	.LVL21:
-  41:Core/Src/FloatToChar.c ****         
-  42:Core/Src/FloatToChar.c ****         i--;
- 185              		.loc 1 42 9 is_stmt 1 view .LVU43
- 186              		.loc 1 42 10 is_stmt 0 view .LVU44
- 187 00e0 013C     		subs	r4, r4, #1
- 188              	.LVL22:
- 189              	.L7:
-  38:Core/Src/FloatToChar.c ****     {
- 190              		.loc 1 38 10 is_stmt 1 view .LVU45
- 191 00e2 002C     		cmp	r4, #0
- 192 00e4 E0DA     		bge	.L8
-  43:Core/Src/FloatToChar.c ****     }
-  44:Core/Src/FloatToChar.c ****     
-  45:Core/Src/FloatToChar.c ****         // *buff++=(units/10)%10 + '0';
-  46:Core/Src/FloatToChar.c ****         // *buff++=units%10 + '0';
-  47:Core/Src/FloatToChar.c ****         *buff++='.';
- 193              		.loc 1 47 9 view .LVU46
- 194              	.LVL23:
- 195              		.loc 1 47 16 is_stmt 0 view .LVU47
- 196 00e6 2E23     		movs	r3, #46
- 197 00e8 2B70     		strb	r3, [r5]
-  48:Core/Src/FloatToChar.c ****         *buff++=(dec/10)%10 + '0';
- 198              		.loc 1 48 9 is_stmt 1 view .LVU48
- 199              		.loc 1 48 21 is_stmt 0 view .LVU49
- 200 00ea 134B     		ldr	r3, .L14+24
- 201 00ec 83FB0721 		smull	r2, r1, r3, r7
- 202 00f0 FA17     		asrs	r2, r7, #31
- 203 00f2 C2EBA102 		rsb	r2, r2, r1, asr #2
- 204              		.loc 1 48 25 view .LVU50
- 205 00f6 83FB0231 		smull	r3, r1, r3, r2
- 206 00fa D317     		asrs	r3, r2, #31
- 207 00fc C3EBA103 		rsb	r3, r3, r1, asr #2
- 208 0100 03EB8303 		add	r3, r3, r3, lsl #2
- 209 0104 A2EB4303 		sub	r3, r2, r3, lsl #1
- 210              	.LVL24:
- 211              		.loc 1 48 29 view .LVU51
- 212 0108 3033     		adds	r3, r3, #48
- 213              		.loc 1 48 16 view .LVU52
- 214 010a 6B70     		strb	r3, [r5, #1]
-  49:Core/Src/FloatToChar.c ****         *buff++=dec%10 + '0';
- 215              		.loc 1 49 9 is_stmt 1 view .LVU53
- 216              		.loc 1 49 20 is_stmt 0 view .LVU54
- 217 010c 02EB8202 		add	r2, r2, r2, lsl #2
- 218 0110 A7EB4202 		sub	r2, r7, r2, lsl #1
- 219              	.LVL25:
- 220              		.loc 1 49 24 view .LVU55
- 221 0114 3032     		adds	r2, r2, #48
- 222              		.loc 1 49 16 view .LVU56
- 223 0116 AA70     		strb	r2, [r5, #2]
-  50:Core/Src/FloatToChar.c ****         *buff++='\0';
- 224              		.loc 1 50 9 is_stmt 1 view .LVU57
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\cc1Vyl0O.s 			page 6
+ 137:Core/Src/FloatToChar.c ****     int units;
+  96              		.loc 1 137 5 view .LVU8
+ 138:Core/Src/FloatToChar.c ****     //have to consider negative floats as well 
+ 139:Core/Src/FloatToChar.c ****     //dealing with floats from -99->99
+ 140:Core/Src/FloatToChar.c ****     //dealing with units left of decimal first positive and negative
+ 141:Core/Src/FloatToChar.c ****     if(y<0)
+  97              		.loc 1 141 5 view .LVU9
+  98              		.loc 1 141 7 is_stmt 0 view .LVU10
+  99 0006 B5EEC00A 		vcmpe.f32	s0, #0
+ 100 000a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 101 000e 2ED4     		bmi	.L16
+ 142:Core/Src/FloatToChar.c ****     {
+ 143:Core/Src/FloatToChar.c ****         //only want to deal with max 4 digits
+ 144:Core/Src/FloatToChar.c ****         dec = ((int)(y*-100))%100;
+ 145:Core/Src/FloatToChar.c ****         units = (int)(y*-1);
+ 146:Core/Src/FloatToChar.c ****         *buff++ = '-';
+ 147:Core/Src/FloatToChar.c ****     }
+ 148:Core/Src/FloatToChar.c ****     else 
+ 149:Core/Src/FloatToChar.c ****     {
+ 150:Core/Src/FloatToChar.c ****         dec = ((int)(y*100))%100;
+ 102              		.loc 1 150 9 is_stmt 1 view .LVU11
+ 103              		.loc 1 150 23 is_stmt 0 view .LVU12
+ 104 0010 DFED457A 		vldr.32	s15, .L18+8
+ 105 0014 60EE277A 		vmul.f32	s15, s0, s15
+ 106              		.loc 1 150 16 view .LVU13
+ 107 0018 FDEEE77A 		vcvt.s32.f32	s15, s15
+ 108 001c 17EE903A 		vmov	r3, s15	@ int
+ 109              		.loc 1 150 13 view .LVU14
+ 110 0020 424A     		ldr	r2, .L18+12
+ 111 0022 82FB0312 		smull	r1, r2, r2, r3
+ 112              	.LVL4:
+ 113              		.loc 1 150 13 view .LVU15
+ 114 0026 DF17     		asrs	r7, r3, #31
+ 115 0028 C7EB6217 		rsb	r7, r7, r2, asr #5
+ 116 002c 6422     		movs	r2, #100
+ 117 002e 02FB1737 		mls	r7, r2, r7, r3
+ 118              	.LVL5:
+ 151:Core/Src/FloatToChar.c ****         units = (int)(y*1);
+ 119              		.loc 1 151 9 is_stmt 1 view .LVU16
+ 120              		.loc 1 151 15 is_stmt 0 view .LVU17
+ 121 0032 FDEEC07A 		vcvt.s32.f32	s15, s0
+ 122 0036 17EE906A 		vmov	r6, s15	@ int
+ 123              	.LVL6:
+ 124              	.L8:
+ 152:Core/Src/FloatToChar.c ****     }
+ 153:Core/Src/FloatToChar.c ****     //only need 4 values, easiest way to do this is line by line since looking for specific output.
+ 154:Core/Src/FloatToChar.c ****     //*buff++ == assign value to dereferenced pointer then increment pointer
+ 155:Core/Src/FloatToChar.c ****     int i = 0;
+ 125              		.loc 1 155 5 is_stmt 1 view .LVU18
+ 156:Core/Src/FloatToChar.c ****     while((units/pow(10,i))>=1)
+ 126              		.loc 1 156 5 view .LVU19
+ 155:Core/Src/FloatToChar.c ****     while((units/pow(10,i))>=1)
+ 127              		.loc 1 155 9 is_stmt 0 view .LVU20
+ 128 003a 0024     		movs	r4, #0
+ 129              	.LVL7:
+ 130              	.L9:
+ 131              		.loc 1 156 10 is_stmt 1 view .LVU21
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 6
 
 
- 225              	.LVL26:
- 226              		.loc 1 50 16 is_stmt 0 view .LVU58
- 227 0118 0023     		movs	r3, #0
- 228 011a EB70     		strb	r3, [r5, #3]
-  51:Core/Src/FloatToChar.c ****     
-  52:Core/Src/FloatToChar.c **** }...
- 229              		.loc 1 52 1 view .LVU59
- 230 011c BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
- 231              	.LVL27:
- 232              	.L15:
- 233              		.loc 1 52 1 view .LVU60
- 234              		.align	3
- 235              	.L14:
- 236 0120 00000000 		.word	0
- 237 0124 00002440 		.word	1076101120
- 238 0128 0000C842 		.word	1120403456
- 239 012c 1F85EB51 		.word	1374389535
- 240 0130 0000F03F 		.word	1072693248
- 241 0134 0000C8C2 		.word	-1027080192
- 242 0138 67666666 		.word	1717986919
- 243              		.cfi_endproc
- 244              	.LFE0:
- 246              		.text
- 247              	.Letext0:
- 248              		.file 2 "c:\\stm32projects\\toolchain\\gcc-arm\\lib\\gcc\\arm-none-eabi\\9.3.1\\include\\stddef.h"
- 249              		.file 3 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\sys\\_types.h"
- 250              		.file 4 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\sys\\reent.h"
- 251              		.file 5 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\sys\\lock.h"
- 252              		.file 6 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\math.h"
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\cc1Vyl0O.s 			page 7
+ 132              		.loc 1 156 18 is_stmt 0 view .LVU22
+ 133 003c 2046     		mov	r0, r4
+ 134 003e FFF7FEFF 		bl	__aeabi_i2d
+ 135              	.LVL8:
+ 136 0042 41EC110B 		vmov	d1, r0, r1
+ 137 0046 9FED360B 		vldr.64	d0, .L18
+ 138 004a FFF7FEFF 		bl	pow
+ 139              	.LVL9:
+ 140 004e 59EC108B 		vmov	r8, r9, d0
+ 141              		.loc 1 156 17 view .LVU23
+ 142 0052 3046     		mov	r0, r6
+ 143 0054 FFF7FEFF 		bl	__aeabi_i2d
+ 144              	.LVL10:
+ 145 0058 4246     		mov	r2, r8
+ 146 005a 4B46     		mov	r3, r9
+ 147 005c FFF7FEFF 		bl	__aeabi_ddiv
+ 148              	.LVL11:
+ 149              		.loc 1 156 10 view .LVU24
+ 150 0060 0022     		movs	r2, #0
+ 151 0062 334B     		ldr	r3, .L18+16
+ 152 0064 FFF7FEFF 		bl	__aeabi_dcmpge
+ 153              	.LVL12:
+ 154 0068 E0B1     		cbz	r0, .L17
+ 157:Core/Src/FloatToChar.c ****     {
+ 158:Core/Src/FloatToChar.c ****         i++;
+ 155              		.loc 1 158 9 is_stmt 1 view .LVU25
+ 156              		.loc 1 158 10 is_stmt 0 view .LVU26
+ 157 006a 0134     		adds	r4, r4, #1
+ 158              	.LVL13:
+ 159              		.loc 1 158 10 view .LVU27
+ 160 006c E6E7     		b	.L9
+ 161              	.LVL14:
+ 162              	.L16:
+ 144:Core/Src/FloatToChar.c ****         units = (int)(y*-1);
+ 163              		.loc 1 144 9 is_stmt 1 view .LVU28
+ 144:Core/Src/FloatToChar.c ****         units = (int)(y*-1);
+ 164              		.loc 1 144 23 is_stmt 0 view .LVU29
+ 165 006e DFED317A 		vldr.32	s15, .L18+20
+ 166 0072 60EE277A 		vmul.f32	s15, s0, s15
+ 144:Core/Src/FloatToChar.c ****         units = (int)(y*-1);
+ 167              		.loc 1 144 16 view .LVU30
+ 168 0076 FDEEE77A 		vcvt.s32.f32	s15, s15
+ 169 007a 17EE903A 		vmov	r3, s15	@ int
+ 144:Core/Src/FloatToChar.c ****         units = (int)(y*-1);
+ 170              		.loc 1 144 13 view .LVU31
+ 171 007e 2B4A     		ldr	r2, .L18+12
+ 172 0080 82FB0312 		smull	r1, r2, r2, r3
+ 173              	.LVL15:
+ 144:Core/Src/FloatToChar.c ****         units = (int)(y*-1);
+ 174              		.loc 1 144 13 view .LVU32
+ 175 0084 DF17     		asrs	r7, r3, #31
+ 176 0086 C7EB6217 		rsb	r7, r7, r2, asr #5
+ 177 008a 6422     		movs	r2, #100
+ 178 008c 02FB1737 		mls	r7, r2, r7, r3
+ 179              	.LVL16:
+ 145:Core/Src/FloatToChar.c ****         *buff++ = '-';
+ 180              		.loc 1 145 9 is_stmt 1 view .LVU33
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 7
+
+
+ 145:Core/Src/FloatToChar.c ****         *buff++ = '-';
+ 181              		.loc 1 145 24 is_stmt 0 view .LVU34
+ 182 0090 B1EE400A 		vneg.f32	s0, s0
+ 183              	.LVL17:
+ 145:Core/Src/FloatToChar.c ****         *buff++ = '-';
+ 184              		.loc 1 145 15 view .LVU35
+ 185 0094 FDEEC07A 		vcvt.s32.f32	s15, s0
+ 186 0098 17EE906A 		vmov	r6, s15	@ int
+ 187              	.LVL18:
+ 146:Core/Src/FloatToChar.c ****     }
+ 188              		.loc 1 146 9 is_stmt 1 view .LVU36
+ 146:Core/Src/FloatToChar.c ****     }
+ 189              		.loc 1 146 17 is_stmt 0 view .LVU37
+ 190 009c 2D23     		movs	r3, #45
+ 191 009e 05F8013B 		strb	r3, [r5], #1
+ 192              	.LVL19:
+ 146:Core/Src/FloatToChar.c ****     }
+ 193              		.loc 1 146 17 view .LVU38
+ 194 00a2 CAE7     		b	.L8
+ 195              	.LVL20:
+ 196              	.L17:
+ 159:Core/Src/FloatToChar.c ****     }
+ 160:Core/Src/FloatToChar.c ****     i--;
+ 197              		.loc 1 160 5 is_stmt 1 view .LVU39
+ 198              		.loc 1 160 6 is_stmt 0 view .LVU40
+ 199 00a4 013C     		subs	r4, r4, #1
+ 200              	.LVL21:
+ 161:Core/Src/FloatToChar.c ****     while(i>=0)
+ 201              		.loc 1 161 5 is_stmt 1 view .LVU41
+ 202              		.loc 1 161 10 is_stmt 0 view .LVU42
+ 203 00a6 1CE0     		b	.L11
+ 204              	.L12:
+ 162:Core/Src/FloatToChar.c ****     {
+ 163:Core/Src/FloatToChar.c ****         *buff++=(units/(int)pow(10,i))%10 + '0';
+ 205              		.loc 1 163 9 is_stmt 1 view .LVU43
+ 206              		.loc 1 163 29 is_stmt 0 view .LVU44
+ 207 00a8 2046     		mov	r0, r4
+ 208 00aa FFF7FEFF 		bl	__aeabi_i2d
+ 209              	.LVL22:
+ 210 00ae 41EC110B 		vmov	d1, r0, r1
+ 211 00b2 9FED1B0B 		vldr.64	d0, .L18
+ 212 00b6 FFF7FEFF 		bl	pow
+ 213              	.LVL23:
+ 214 00ba 51EC100B 		vmov	r0, r1, d0
+ 215              		.loc 1 163 24 view .LVU45
+ 216 00be FFF7FEFF 		bl	__aeabi_d2iz
+ 217              	.LVL24:
+ 218              		.loc 1 163 23 view .LVU46
+ 219 00c2 96FBF0F0 		sdiv	r0, r6, r0
+ 220              		.loc 1 163 39 view .LVU47
+ 221 00c6 1C4A     		ldr	r2, .L18+24
+ 222 00c8 82FB0032 		smull	r3, r2, r2, r0
+ 223 00cc C317     		asrs	r3, r0, #31
+ 224 00ce C3EBA203 		rsb	r3, r3, r2, asr #2
+ 225 00d2 03EB8303 		add	r3, r3, r3, lsl #2
+ 226 00d6 A0EB4303 		sub	r3, r0, r3, lsl #1
+ 227              	.LVL25:
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 8
+
+
+ 228              		.loc 1 163 43 view .LVU48
+ 229 00da 3033     		adds	r3, r3, #48
+ 230              		.loc 1 163 16 view .LVU49
+ 231 00dc 05F8013B 		strb	r3, [r5], #1
+ 232              	.LVL26:
+ 164:Core/Src/FloatToChar.c ****         
+ 165:Core/Src/FloatToChar.c ****         i--;
+ 233              		.loc 1 165 9 is_stmt 1 view .LVU50
+ 234              		.loc 1 165 10 is_stmt 0 view .LVU51
+ 235 00e0 013C     		subs	r4, r4, #1
+ 236              	.LVL27:
+ 237              	.L11:
+ 161:Core/Src/FloatToChar.c ****     {
+ 238              		.loc 1 161 10 is_stmt 1 view .LVU52
+ 239 00e2 002C     		cmp	r4, #0
+ 240 00e4 E0DA     		bge	.L12
+ 166:Core/Src/FloatToChar.c ****     }
+ 167:Core/Src/FloatToChar.c ****         *buff++='.';
+ 241              		.loc 1 167 9 view .LVU53
+ 242              	.LVL28:
+ 243              		.loc 1 167 16 is_stmt 0 view .LVU54
+ 244 00e6 2E23     		movs	r3, #46
+ 245 00e8 2B70     		strb	r3, [r5]
+ 168:Core/Src/FloatToChar.c ****         *buff++=(dec/10)%10 + '0';
+ 246              		.loc 1 168 9 is_stmt 1 view .LVU55
+ 247              		.loc 1 168 21 is_stmt 0 view .LVU56
+ 248 00ea 134B     		ldr	r3, .L18+24
+ 249 00ec 83FB0721 		smull	r2, r1, r3, r7
+ 250 00f0 FA17     		asrs	r2, r7, #31
+ 251 00f2 C2EBA102 		rsb	r2, r2, r1, asr #2
+ 252              		.loc 1 168 25 view .LVU57
+ 253 00f6 83FB0231 		smull	r3, r1, r3, r2
+ 254 00fa D317     		asrs	r3, r2, #31
+ 255 00fc C3EBA103 		rsb	r3, r3, r1, asr #2
+ 256 0100 03EB8303 		add	r3, r3, r3, lsl #2
+ 257 0104 A2EB4303 		sub	r3, r2, r3, lsl #1
+ 258              	.LVL29:
+ 259              		.loc 1 168 29 view .LVU58
+ 260 0108 3033     		adds	r3, r3, #48
+ 261              		.loc 1 168 16 view .LVU59
+ 262 010a 6B70     		strb	r3, [r5, #1]
+ 169:Core/Src/FloatToChar.c ****         *buff++=dec%10 + '0';
+ 263              		.loc 1 169 9 is_stmt 1 view .LVU60
+ 264              		.loc 1 169 20 is_stmt 0 view .LVU61
+ 265 010c 02EB8202 		add	r2, r2, r2, lsl #2
+ 266 0110 A7EB4202 		sub	r2, r7, r2, lsl #1
+ 267              	.LVL30:
+ 268              		.loc 1 169 24 view .LVU62
+ 269 0114 3032     		adds	r2, r2, #48
+ 270              		.loc 1 169 16 view .LVU63
+ 271 0116 AA70     		strb	r2, [r5, #2]
+ 170:Core/Src/FloatToChar.c ****         *buff++='\0';
+ 272              		.loc 1 170 9 is_stmt 1 view .LVU64
+ 273              	.LVL31:
+ 274              		.loc 1 170 16 is_stmt 0 view .LVU65
+ 275 0118 0023     		movs	r3, #0
+ 276 011a EB70     		strb	r3, [r5, #3]
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 9
+
+
+ 171:Core/Src/FloatToChar.c ****     //look over this implementation
+ 172:Core/Src/FloatToChar.c ****     // if(z==1)
+ 173:Core/Src/FloatToChar.c ****     // {
+ 174:Core/Src/FloatToChar.c ****     //     int i=0;
+ 175:Core/Src/FloatToChar.c ****     //         while(i<5)
+ 176:Core/Src/FloatToChar.c ****     //         {
+ 177:Core/Src/FloatToChar.c ****     //             if (i==3)
+ 178:Core/Src/FloatToChar.c ****     //             {
+ 179:Core/Src/FloatToChar.c ****     //                 i++;
+ 180:Core/Src/FloatToChar.c ****     //             }
+ 181:Core/Src/FloatToChar.c ****     //             else
+ 182:Core/Src/FloatToChar.c ****     //             {
+ 183:Core/Src/FloatToChar.c ****     //                 if(buff[i]!=8 && buff[i]!=0)
+ 184:Core/Src/FloatToChar.c ****     //                 {
+ 185:Core/Src/FloatToChar.c ****     //                      createChar(i,specialchars[buff[i]]);
+ 186:Core/Src/FloatToChar.c ****     //                 }
+ 187:Core/Src/FloatToChar.c ****                    
+ 188:Core/Src/FloatToChar.c ****     //                  i++;
+ 189:Core/Src/FloatToChar.c ****     //             }
+ 190:Core/Src/FloatToChar.c ****                
+ 191:Core/Src/FloatToChar.c ****     //         }
+ 192:Core/Src/FloatToChar.c ****     // }
+ 193:Core/Src/FloatToChar.c **** }...
+ 277              		.loc 1 193 1 view .LVU66
+ 278 011c BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 279              	.LVL32:
+ 280              	.L19:
+ 281              		.loc 1 193 1 view .LVU67
+ 282              		.align	3
+ 283              	.L18:
+ 284 0120 00000000 		.word	0
+ 285 0124 00002440 		.word	1076101120
+ 286 0128 0000C842 		.word	1120403456
+ 287 012c 1F85EB51 		.word	1374389535
+ 288 0130 0000F03F 		.word	1072693248
+ 289 0134 0000C8C2 		.word	-1027080192
+ 290 0138 67666666 		.word	1717986919
+ 291              		.cfi_endproc
+ 292              	.LFE134:
+ 294              		.global	specialchars
+ 295              		.global	tee
+ 296              		.global	eee
+ 297              		.global	em
+ 298              		.global	nine
+ 299              		.global	seven
+ 300              		.global	six
+ 301              		.global	five
+ 302              		.global	four
+ 303              		.global	three
+ 304              		.global	two
+ 305              		.global	one
+ 306              		.section	.data.eee,"aw"
+ 307              		.align	2
+ 310              	eee:
+ 311 0000 001F0101 		.ascii	"\000\037\001\001\017\001\001\037"
+ 311      0F01011F 
+ 312              		.section	.data.em,"aw"
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 10
+
+
+ 313              		.align	2
+ 316              	em:
+ 317 0000 00060810 		.ascii	"\000\006\010\020\036\021\021\016"
+ 317      1E11110E 
+ 318              		.section	.data.five,"aw"
+ 319              		.align	2
+ 322              	five:
+ 323 0000 000E1110 		.ascii	"\000\016\021\020\020\017\001\037"
+ 323      100F011F 
+ 324              		.section	.data.four,"aw"
+ 325              		.align	2
+ 328              	four:
+ 329 0000 0008081F 		.ascii	"\000\010\010\037\011\012\014\010"
+ 329      090A0C08 
+ 330              		.section	.data.nine,"aw"
+ 331              		.align	2
+ 334              	nine:
+ 335 0000 00060810 		.ascii	"\000\006\010\020\036\021\021\016"
+ 335      1E11110E 
+ 336              		.section	.data.one,"aw"
+ 337              		.align	2
+ 340              	one:
+ 341 0000 000E0404 		.ascii	"\000\016\004\004\004\004\005\004"
+ 341      04040504 
+ 342              		.section	.data.seven,"aw"
+ 343              		.align	2
+ 346              	seven:
+ 347 0000 00020202 		.ascii	"\000\002\002\002\004\010\021\037"
+ 347      0408111F 
+ 348              		.section	.data.six,"aw"
+ 349              		.align	2
+ 352              	six:
+ 353 0000 000E1111 		.ascii	"\000\016\021\021\017\001\002\014"
+ 353      0F01020C 
+ 354              		.section	.data.specialchars,"aw"
+ 355              		.align	2
+ 356              		.set	.LANCHOR0,. + 0
+ 359              	specialchars:
+ 360 0000 00000000 		.word	0
+ 361 0004 00000000 		.word	one
+ 362 0008 00000000 		.word	two
+ 363 000c 00000000 		.word	three
+ 364 0010 00000000 		.word	four
+ 365 0014 00000000 		.word	five
+ 366 0018 00000000 		.word	six
+ 367 001c 00000000 		.word	seven
+ 368 0020 00000000 		.word	0
+ 369 0024 00000000 		.word	nine
+ 370 0028 00000000 		.word	tee
+ 371 002c 00000000 		.word	eee
+ 372 0030 00000000 		.word	em
+ 373              		.section	.data.tee,"aw"
+ 374              		.align	2
+ 377              	tee:
+ 378 0000 00040404 		.ascii	"\000\004\004\004\004\004\004\037"
+ 378      0404041F 
+ 379              		.section	.data.three,"aw"
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 11
+
+
+ 380              		.align	2
+ 383              	three:
+ 384 0000 000D2010 		.ascii	"\000\015 \020\010\004\010\037"
+ 384      0804081F 
+ 385              		.section	.data.two,"aw"
+ 386              		.align	2
+ 389              	two:
+ 390 0000 001F0204 		.ascii	"\000\037\002\004\010\020\021\016"
+ 390      0810110E 
+ 391              		.text
+ 392              	.Letext0:
+ 393              		.file 2 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 394              		.file 3 "c:\\stm32projects\\toolchain\\gcc-arm\\lib\\gcc\\arm-none-eabi\\9.3.1\\include\\stddef.h"
+ 395              		.file 4 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\sys\\_types.h"
+ 396              		.file 5 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\sys\\reent.h"
+ 397              		.file 6 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\sys\\lock.h"
+ 398              		.file 7 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 399              		.file 8 "Drivers/CMSIS/Include/core_cm4.h"
+ 400              		.file 9 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
+ 401              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
+ 402              		.file 11 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\math.h"
+ 403              		.file 12 "Core/Inc/LiquidCrystal.h"
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 FloatToChar.c
-C:\Users\pierc\AppData\Local\Temp\cc1Vyl0O.s:22     .text.float_char:00000000 $t
-C:\Users\pierc\AppData\Local\Temp\cc1Vyl0O.s:30     .text.float_char:00000000 float_char
-C:\Users\pierc\AppData\Local\Temp\cc1Vyl0O.s:236    .text.float_char:00000120 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:18     .text.initialize:00000000 $t
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:26     .text.initialize:00000000 initialize
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:59     .text.initialize:00000020 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:68     .text.float_char:00000000 $t
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:75     .text.float_char:00000000 float_char
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:284    .text.float_char:00000120 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:359    .data.specialchars:00000000 specialchars
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:377    .data.tee:00000000 tee
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:310    .data.eee:00000000 eee
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:316    .data.em:00000000 em
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:334    .data.nine:00000000 nine
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:346    .data.seven:00000000 seven
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:352    .data.six:00000000 six
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:322    .data.five:00000000 five
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:328    .data.four:00000000 four
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:383    .data.three:00000000 three
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:389    .data.two:00000000 two
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:340    .data.one:00000000 one
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:307    .data.eee:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:313    .data.em:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:319    .data.five:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:325    .data.four:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:331    .data.nine:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:337    .data.one:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:343    .data.seven:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:349    .data.six:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:355    .data.specialchars:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:374    .data.tee:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:380    .data.three:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccflbMsn.s:386    .data.two:00000000 $d
 
 UNDEFINED SYMBOLS
+createChar
 __aeabi_i2d
 __aeabi_ddiv
 __aeabi_dcmpge
