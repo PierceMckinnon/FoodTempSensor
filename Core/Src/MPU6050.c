@@ -33,7 +33,7 @@ void MPU6050_Init(void)
 		
 		// power management register 0X6B we should write all 0's to wake the sensor up
 		Data = 0x00;
-		check = 0x00;
+		check = 0x01;
 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, PWR_MGMT_1_REG, 1,&Data, 1, 1000)!=HAL_OK)
 		{	
 			while(1)
@@ -50,10 +50,9 @@ void MPU6050_Init(void)
 					
 			}
 		}
-		
 
 		//setting range of accel to += 2g, disabling self test
-		Data = 0x00;
+		Data = 0x01;
 		check =0x00;
 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, ACCEL_CONFIG_REG, 1, &Data, 1, 1000)!=HAL_OK)
 		 {
@@ -71,7 +70,8 @@ void MPU6050_Init(void)
 					
 			}
 		}
-// Set DATA SAMPLE RATE of 1KHz by writing SMPLRT_DIV register
+		
+		// Set DATA SAMPLE RATE of 1KHz by writing SMPLRT_DIV register
 		Data = 0xDF;
 		check =0x00;
 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000)!=HAL_OK)
@@ -90,6 +90,7 @@ void MPU6050_Init(void)
 					
 			}
 		}
+
 		//enabling interrupt on data ready 
 		Data = 0x01;
 		check = 0x00;
@@ -153,16 +154,17 @@ void MPU6050_Read_Accel (void)
 	//setting the fsRange to +-2 the lsb sensitivity is 16384.0 so divide to get value in g's
 
 	ACCEL_X = ACCEL_X_RAW/16384.0;
-	// if(ACCEL_X<-0.2 && i==0)
-	// {
-	// 	printval();
-	// 	i=1;
-	// }
-	// else if(ACCEL_X>0.2 && i==1)
-	// {
-	// 	printval();
-	// 	i=0;
-	// }
+
+	if(ACCEL_X<-0.2 && i==0)
+	{
+		printval();
+		i=1;
+	}
+	else if(ACCEL_X>0.2 && i==1)
+	{
+		printval();
+		i=0;
+	}
 
 	
 	//clear int_status register

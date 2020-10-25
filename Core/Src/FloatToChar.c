@@ -160,34 +160,33 @@ void float_char(char *buff, float y, int z)
     i--;
     while(i>=0)
     {
-        *buff++=(units/(int)pow(10,i))%10 + '0';
-        
+        *buff++= (units/(int)pow(10,i))%10 + '0';
         i--;
     }
         *buff++='.';
         *buff++=(dec/10)%10 + '0';
         *buff++=dec%10 + '0';
         *buff++='\0';
-    //look over this implementation
-    // if(z==1)
-    // {
-    //     int i=0;
-    //         while(i<5)
-    //         {
-    //             if (i==3)
-    //             {
-    //                 i++;
-    //             }
-    //             else
-    //             {
-    //                 if(buff[i]!=8 && buff[i]!=0)
-    //                 {
-    //                      createChar(i,specialchars[buff[i]]);
-    //                 }
-                   
-    //                  i++;
-    //             }
-               
-    //         }
-    // }
+
+    
+    if(z==1)
+    {
+        i=0;
+        int r=0;
+        while(i<=4)
+        {
+            if(buff[i]=='8' || buff[i]=='0' || buff[i]== '.')
+            {
+                write(buff[i]);
+            }
+            else
+            {
+                createChar(r,specialchars[(int)(buff[i]-'0')]);
+                write(r);
+                r++;
+            }
+            
+            i++;
+        } 
+    }
 }

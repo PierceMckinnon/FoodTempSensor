@@ -57,12 +57,7 @@ int main(void)
   initialize();
 
   /* Timer counter enable */
-  if (HAL_TIM_Base_Start(&TimHandle) != HAL_OK)
-  {
-    /* Counter Enable Error */
-    Error_Handler();
-		
-  }
+  HAL_TIM_Base_Start(&TimHandle);
   
 	HAL_ADC_Start(&AdcHandle);
   HAL_NVIC_SetPriority(EXTI3_IRQn , 0, 0);
@@ -84,9 +79,10 @@ int main(void)
 		//ration must be held
 	
 		resistance = (3.3-digital)*10000.0/digital;
-	
 		x = 0.00102219653793705 + 0.000253179116444952*((float)log(resistance)) -0.000000000058799201163101*((float)powf(log(resistance),3)); 
 		Temp = 1.0/x - 273.15;
+
+    //update on screen temp
     printval();
 
 		HAL_Delay(1000);
@@ -96,58 +92,43 @@ int main(void)
 
 void printval()
 {
- 
-  //if(ACCEL_X<-0.2)
-    //{
-    //implement while loops, cleaner 
-    //check for 0 or 8
-    // rightToLeft();
-    // setCursor(15,15);
-    // int i=5;
-    // while(i<=7)
-    // {
-    //   write(i);
-    //   i++;
-    // }
-    // print("b:");
-    //   //t
-    //   //write(5)
-    //   //e
-    //   //write(6)
-    //   //m
-    //   //write(7)
-    //   //print("b:");
-    //   // setCursor(15,0);
-    // i=0;
-    // while(i<=3)
-    // {
-    //   if(i==2)
-    //   {
-    //     print('.');
-    //   }
-    //   write(i);
-    //   i++;
-    // }
-    //   // write(0);
-    //   // write(1);
-    //   // write(2);
-    //   // write(3);
-     
+  
+  char buff[10];
+  
+  if(ACCEL_X<-0.2)
+  {
+    
+    // check for 0 or 8
+    rightToLeft();
+    
+    setCursor(15,15);
+    int i=5;
+    while(i<=7)
+    {
+      write(i);
+      i++;
+    }
+    print("b:");
+    setCursor(15,0);
+    float_char(buff,Temp,1);
+  }
+  else
+  {
       
-    // }
-    // else
-    // {
-      char buff[10];
       leftToRight();
+      setCursor(0,0);
+      print("Temp");
       float_char(buff,Temp,0);
       setCursor(0,1);
-      
       print(buff);
-      float_char(buff,ACCEL_X,0);
       setCursor(8,1);
-      
+      float_char(buff,ACCEL_X,0);
       print(buff);
-    // }  
+      
+     
+      
+      
+  }  
 }
 /**
   * @brief  System Clock Configuration
@@ -262,16 +243,16 @@ static void I2C_Config(void)
   }
   /** Configure Analogue filter
   */
-  if (HAL_I2CEx_ConfigAnalogFilter(&I2CHandle, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Configure Digital filter
-  */
-  if (HAL_I2CEx_ConfigDigitalFilter(&I2CHandle, 0) != HAL_OK)
-  {
-    Error_Handler();
-  }
+  // if (HAL_I2CEx_ConfigAnalogFilter(&I2CHandle, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+  // {
+  //   Error_Handler();
+  // }
+  // /** Configure Digital filter
+  // */
+  // if (HAL_I2CEx_ConfigDigitalFilter(&I2CHandle, 0) != HAL_OK)
+  // {
+  //   Error_Handler();
+  // }
 }
 
 /**
