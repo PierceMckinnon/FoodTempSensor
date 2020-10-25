@@ -25,9 +25,9 @@ This can then be used together with the Steinhart and Hart equation to determine
 To print the temperature onto the LCD I made a custom float to char function.
 
 ## Step 2: Configuring the accelerometer
-Configuring the accelerometer involved a lot of reading the datasheet to figure out what registers I needed.
-![][https://raw.githubusercontent.com/PierceMckinnon/FoodTempSensor/master/Images/Accelerometer.PNG]
-    
+Configuring the accelerometer involved a lot of reading the datasheet to figure out what registers I needed. I chose to include an accelerometer so that the LCD screen would rotate when the user rotates the physical device. When the accelerometers arrived I soldered on some pin headers and got to work.
+
+![](https://raw.githubusercontent.com/PierceMckinnon/FoodTempSensor/master/Images/Accelerometer.PNG)
 ## Step 3: Design a custom PCB and 3D print a unit to contain the device
 To be completed 
   
