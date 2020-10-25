@@ -34,7 +34,7 @@ I wanted the LCD to respond immediately to rotation so I configured the accelero
 
 ![](https://raw.githubusercontent.com/PierceMckinnon/FoodTempSensor/master/Images/Logicanalyzer.png)
 
-Here is the final system. 
+Here is the final system. The next step is to shrink the device into a custom PCB.
 
 ![](https://raw.githubusercontent.com/PierceMckinnon/FoodTempSensor/master/Images/System.PNG)
 ## Step 3: Design a custom PCB and 3D print a unit to contain the device
