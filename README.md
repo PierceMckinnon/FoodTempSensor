@@ -26,6 +26,7 @@ To print the temperature onto the LCD I made a custom float to char function.
 
 ## Step 2: Configuring the accelerometer
 Configuring the accelerometer involved a lot of reading the datasheet to figure out what registers I needed.
+![][https://raw.githubusercontent.com/PierceMckinnon/FoodTempSensor/master/Images/Accelerometer.PNG]
     
 ## Step 3: Design a custom PCB and 3D print a unit to contain the device
 To be completed 
