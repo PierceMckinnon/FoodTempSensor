@@ -22,8 +22,9 @@ The thermistor resistance value changes with temperature and so I used a simple 
 - 3.3-(V/R2)*R1-V=0
 - (-V+3.3)*R2/V=R1
 This can then be used together with the Steinhart and Hart equation to determine temperature. I configured the ADC so that I could get digital values to be used in the equation.
-To print the temperature onto the LCD I made a custom float to char function.
+To print the temperature onto the LCD I made a custom float to char function. I found the temperature to be accurate to +-1 degree Celcius at room temperature. Unfortunately the thermistor cannot be used to penetrate meat such as chicken to determine the internal temperature. The meat must be cut open which results in some heat loss but it still provides a reasonable estimate.
 
+![](https://raw.githubusercontent.com/PierceMckinnon/FoodTempSensor/master/Images/Temperature%20Working.PNG)
 ## Step 2: Configuring the accelerometer
 Configuring the accelerometer involved a lot of reading the datasheet to figure out what registers I needed. I chose to include an accelerometer so that the LCD screen would rotate when the user rotates the physical device. When the accelerometers arrived I soldered on some pin headers and got to work.
 
