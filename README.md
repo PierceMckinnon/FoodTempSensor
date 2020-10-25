@@ -11,6 +11,7 @@ Learning outcomes of this project so far:
 - How to set up interrupts over EXTI lines
 - How to debug effectively 
 - How to use the STM32CubeMX tool
+- How to use a logic analyzer to debug communication lines
   
 [This](https://github.com/PierceMckinnon/FoodTempSensor/tree/master/Core) is the core code
 ## Step 1: Setting up the thermistor
