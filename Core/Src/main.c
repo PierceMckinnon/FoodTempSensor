@@ -56,13 +56,10 @@ int main(void)
   
   initialize();
 
-  /* Timer counter enable */
   HAL_TIM_Base_Start(&TimHandle);
-  
 	HAL_ADC_Start(&AdcHandle);
   HAL_NVIC_SetPriority(EXTI3_IRQn , 0, 0);
   HAL_NVIC_EnableIRQ(EXTI3_IRQn);
-  /* Infinite loop */
   while (1)
   {
 		
