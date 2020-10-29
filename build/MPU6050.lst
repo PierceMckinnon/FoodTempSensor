@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 1
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 1
   44 0004 8023     		movs	r3, #128
   45 0006 8DF81630 		strb	r3, [sp, #22]
   13:Core/Src/MPU6050.c **** 	if (HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, PWR_MGMT_1_REG, 1,&Data, 1, 1000)!= HAL_OK)
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 2
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 2
 
 
   46              		.loc 1 13 2 is_stmt 1 view .LVU5
@@ -71,7 +71,7 @@ ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 1
   53 0018 0092     		str	r2, [sp]
   54 001a 6B22     		movs	r2, #107
   55 001c D021     		movs	r1, #208
-  56 001e 7248     		ldr	r0, .L28
+  56 001e 7348     		ldr	r0, .L28
   57 0020 FFF7FEFF 		bl	HAL_I2C_Mem_Write
   58              	.LVL0:
   59              		.loc 1 13 5 view .LVU7
@@ -102,7 +102,7 @@ ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 1
   74 0036 0092     		str	r2, [sp]
   75 0038 7522     		movs	r2, #117
   76 003a D021     		movs	r1, #208
-  77 003c 6A48     		ldr	r0, .L28
+  77 003c 6B48     		ldr	r0, .L28
   78 003e FFF7FEFF 		bl	HAL_I2C_Mem_Read
   79              	.LVL1:
   80              		.loc 1 22 5 view .LVU13
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 1
   24:Core/Src/MPU6050.c **** 		{
   85              		.loc 1 24 8 discriminator 2 view .LVU16
   86 0044 FEE7     		b	.L5
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 3
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 3
 
 
   87              	.L4:
@@ -136,8 +136,8 @@ ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 1
   32:Core/Src/MPU6050.c **** 		//reset the unit 
   33:Core/Src/MPU6050.c **** 		
   34:Core/Src/MPU6050.c **** 		// power management register 0X6B we should write all 0's to wake the sensor up
-  35:Core/Src/MPU6050.c **** 		Data = 0x00;
-  36:Core/Src/MPU6050.c **** 		check = 0x01;
+  35:Core/Src/MPU6050.c **** 		Data = 0x08;
+  36:Core/Src/MPU6050.c **** 		check = 0x00;
   37:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, PWR_MGMT_1_REG, 1,&Data, 1, 1000)!=HAL_OK)
   38:Core/Src/MPU6050.c **** 		{	
   39:Core/Src/MPU6050.c **** 			while(1)
@@ -156,7 +156,7 @@ ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 1
   52:Core/Src/MPU6050.c **** 		}
   53:Core/Src/MPU6050.c **** 
   54:Core/Src/MPU6050.c **** 		//setting range of accel to += 2g, disabling self test
-  55:Core/Src/MPU6050.c **** 		Data = 0x01;
+  55:Core/Src/MPU6050.c **** 		Data = 0x08;
   56:Core/Src/MPU6050.c **** 		check =0x00;
   57:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, ACCEL_CONFIG_REG, 1, &Data, 1, 1000)!=HAL_OK)
   58:Core/Src/MPU6050.c **** 		 {
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 1
   74:Core/Src/MPU6050.c **** 		// Set DATA SAMPLE RATE of 1KHz by writing SMPLRT_DIV register
   75:Core/Src/MPU6050.c **** 		Data = 0xDF;
   76:Core/Src/MPU6050.c **** 		check =0x00;
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 4
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 4
 
 
   77:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000)!=HAL_OK)
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 1
  131:Core/Src/MPU6050.c **** 	}
  132:Core/Src/MPU6050.c **** 
  133:Core/Src/MPU6050.c **** }
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 5
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 5
 
 
   95              		.loc 1 133 1 view .LVU20
@@ -251,657 +251,659 @@ ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 1
  102              	.L27:
  103              	.LCFI3:
  104              		.cfi_restore_state
-  35:Core/Src/MPU6050.c **** 		check = 0x01;
+  35:Core/Src/MPU6050.c **** 		check = 0x00;
  105              		.loc 1 35 3 is_stmt 1 view .LVU21
-  35:Core/Src/MPU6050.c **** 		check = 0x01;
+  35:Core/Src/MPU6050.c **** 		check = 0x00;
  106              		.loc 1 35 8 is_stmt 0 view .LVU22
- 107 0054 0023     		movs	r3, #0
+ 107 0054 0823     		movs	r3, #8
  108 0056 8DF81630 		strb	r3, [sp, #22]
   36:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, PWR_MGMT_1_REG, 1,&Data, 1, 1000)!=HAL_OK)
  109              		.loc 1 36 3 is_stmt 1 view .LVU23
   36:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, PWR_MGMT_1_REG, 1,&Data, 1, 1000)!=HAL_OK)
  110              		.loc 1 36 9 is_stmt 0 view .LVU24
- 111 005a 0123     		movs	r3, #1
+ 111 005a 0023     		movs	r3, #0
  112 005c 8DF81730 		strb	r3, [sp, #23]
   37:Core/Src/MPU6050.c **** 		{	
  113              		.loc 1 37 3 is_stmt 1 view .LVU25
   37:Core/Src/MPU6050.c **** 		{	
  114              		.loc 1 37 6 is_stmt 0 view .LVU26
- 115 0060 4FF47A72 		mov	r2, #1000
- 116 0064 0292     		str	r2, [sp, #8]
- 117 0066 0193     		str	r3, [sp, #4]
- 118 0068 0DF11602 		add	r2, sp, #22
- 119 006c 0092     		str	r2, [sp]
- 120 006e 6B22     		movs	r2, #107
- 121 0070 D021     		movs	r1, #208
- 122 0072 5D48     		ldr	r0, .L28
- 123 0074 FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 124              	.LVL2:
+ 115 0060 4FF47A73 		mov	r3, #1000
+ 116 0064 0293     		str	r3, [sp, #8]
+ 117 0066 0123     		movs	r3, #1
+ 118 0068 0193     		str	r3, [sp, #4]
+ 119 006a 0DF11602 		add	r2, sp, #22
+ 120 006e 0092     		str	r2, [sp]
+ 121 0070 6B22     		movs	r2, #107
+ 122 0072 D021     		movs	r1, #208
+ 123 0074 5D48     		ldr	r0, .L28
+ 124 0076 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 125              	.LVL2:
   37:Core/Src/MPU6050.c **** 		{	
- 125              		.loc 1 37 5 view .LVU27
- 126 0078 00B1     		cbz	r0, .L7
- 127              	.L8:
+ 126              		.loc 1 37 5 view .LVU27
+ 127 007a 00B1     		cbz	r0, .L7
+ 128              	.L8:
   39:Core/Src/MPU6050.c **** 			{
- 128              		.loc 1 39 4 is_stmt 1 discriminator 3 view .LVU28
+ 129              		.loc 1 39 4 is_stmt 1 discriminator 3 view .LVU28
   42:Core/Src/MPU6050.c **** 			
- 129              		.loc 1 42 4 discriminator 3 view .LVU29
+ 130              		.loc 1 42 4 discriminator 3 view .LVU29
   39:Core/Src/MPU6050.c **** 			{
- 130              		.loc 1 39 9 discriminator 3 view .LVU30
- 131 007a FEE7     		b	.L8
- 132              	.L7:
+ 131              		.loc 1 39 9 discriminator 3 view .LVU30
+ 132 007c FEE7     		b	.L8
+ 133              	.L7:
   45:Core/Src/MPU6050.c **** 		if(check!=Data)
- 133              		.loc 1 45 3 view .LVU31
- 134 007c 4FF47A73 		mov	r3, #1000
- 135 0080 0293     		str	r3, [sp, #8]
- 136 0082 0123     		movs	r3, #1
- 137 0084 0193     		str	r3, [sp, #4]
- 138 0086 0DF11702 		add	r2, sp, #23
- 139 008a 0092     		str	r2, [sp]
- 140 008c 6B22     		movs	r2, #107
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 6
+ 134              		.loc 1 45 3 view .LVU31
+ 135 007e 4FF47A73 		mov	r3, #1000
+ 136 0082 0293     		str	r3, [sp, #8]
+ 137 0084 0123     		movs	r3, #1
+ 138 0086 0193     		str	r3, [sp, #4]
+ 139 0088 0DF11702 		add	r2, sp, #23
+ 140 008c 0092     		str	r2, [sp]
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 6
 
 
- 141 008e D021     		movs	r1, #208
- 142 0090 5548     		ldr	r0, .L28
- 143 0092 FFF7FEFF 		bl	HAL_I2C_Mem_Read
- 144              	.LVL3:
+ 141 008e 6B22     		movs	r2, #107
+ 142 0090 D021     		movs	r1, #208
+ 143 0092 5648     		ldr	r0, .L28
+ 144 0094 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 145              	.LVL3:
   46:Core/Src/MPU6050.c **** 		{
- 145              		.loc 1 46 3 view .LVU32
+ 146              		.loc 1 46 3 view .LVU32
   46:Core/Src/MPU6050.c **** 		{
- 146              		.loc 1 46 11 is_stmt 0 view .LVU33
- 147 0096 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
- 148 009a 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 147              		.loc 1 46 11 is_stmt 0 view .LVU33
+ 148 0098 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
+ 149 009c 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
   46:Core/Src/MPU6050.c **** 		{
- 149              		.loc 1 46 5 view .LVU34
- 150 009e 9A42     		cmp	r2, r3
- 151 00a0 00D0     		beq	.L9
- 152              	.L10:
+ 150              		.loc 1 46 5 view .LVU34
+ 151 00a0 9A42     		cmp	r2, r3
+ 152 00a2 00D0     		beq	.L9
+ 153              	.L10:
   48:Core/Src/MPU6050.c **** 			{
- 153              		.loc 1 48 4 is_stmt 1 discriminator 4 view .LVU35
+ 154              		.loc 1 48 4 is_stmt 1 discriminator 4 view .LVU35
   51:Core/Src/MPU6050.c **** 		}
- 154              		.loc 1 51 4 discriminator 4 view .LVU36
+ 155              		.loc 1 51 4 discriminator 4 view .LVU36
   48:Core/Src/MPU6050.c **** 			{
- 155              		.loc 1 48 9 discriminator 4 view .LVU37
- 156 00a2 FEE7     		b	.L10
- 157              	.L9:
+ 156              		.loc 1 48 9 discriminator 4 view .LVU37
+ 157 00a4 FEE7     		b	.L10
+ 158              	.L9:
   55:Core/Src/MPU6050.c **** 		check =0x00;
- 158              		.loc 1 55 3 view .LVU38
+ 159              		.loc 1 55 3 view .LVU38
   55:Core/Src/MPU6050.c **** 		check =0x00;
- 159              		.loc 1 55 8 is_stmt 0 view .LVU39
- 160 00a4 0123     		movs	r3, #1
- 161 00a6 8DF81630 		strb	r3, [sp, #22]
+ 160              		.loc 1 55 8 is_stmt 0 view .LVU39
+ 161 00a6 0823     		movs	r3, #8
+ 162 00a8 8DF81630 		strb	r3, [sp, #22]
   56:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, ACCEL_CONFIG_REG, 1, &Data, 1, 1000)!=HAL_OK)
- 162              		.loc 1 56 3 is_stmt 1 view .LVU40
+ 163              		.loc 1 56 3 is_stmt 1 view .LVU40
   56:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, ACCEL_CONFIG_REG, 1, &Data, 1, 1000)!=HAL_OK)
- 163              		.loc 1 56 9 is_stmt 0 view .LVU41
- 164 00aa 0022     		movs	r2, #0
- 165 00ac 8DF81720 		strb	r2, [sp, #23]
+ 164              		.loc 1 56 9 is_stmt 0 view .LVU41
+ 165 00ac 0023     		movs	r3, #0
+ 166 00ae 8DF81730 		strb	r3, [sp, #23]
   57:Core/Src/MPU6050.c **** 		 {
- 166              		.loc 1 57 3 is_stmt 1 view .LVU42
+ 167              		.loc 1 57 3 is_stmt 1 view .LVU42
   57:Core/Src/MPU6050.c **** 		 {
- 167              		.loc 1 57 6 is_stmt 0 view .LVU43
- 168 00b0 4FF47A72 		mov	r2, #1000
- 169 00b4 0292     		str	r2, [sp, #8]
- 170 00b6 0193     		str	r3, [sp, #4]
- 171 00b8 0DF11602 		add	r2, sp, #22
- 172 00bc 0092     		str	r2, [sp]
- 173 00be 1C22     		movs	r2, #28
- 174 00c0 D021     		movs	r1, #208
- 175 00c2 4948     		ldr	r0, .L28
- 176 00c4 FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 177              	.LVL4:
+ 168              		.loc 1 57 6 is_stmt 0 view .LVU43
+ 169 00b2 4FF47A73 		mov	r3, #1000
+ 170 00b6 0293     		str	r3, [sp, #8]
+ 171 00b8 0123     		movs	r3, #1
+ 172 00ba 0193     		str	r3, [sp, #4]
+ 173 00bc 0DF11602 		add	r2, sp, #22
+ 174 00c0 0092     		str	r2, [sp]
+ 175 00c2 1C22     		movs	r2, #28
+ 176 00c4 D021     		movs	r1, #208
+ 177 00c6 4948     		ldr	r0, .L28
+ 178 00c8 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 179              	.LVL4:
   57:Core/Src/MPU6050.c **** 		 {
- 178              		.loc 1 57 5 view .LVU44
- 179 00c8 00B1     		cbz	r0, .L11
- 180              	.L12:
+ 180              		.loc 1 57 5 view .LVU44
+ 181 00cc 00B1     		cbz	r0, .L11
+ 182              	.L12:
   59:Core/Src/MPU6050.c **** 			{
- 181              		.loc 1 59 4 is_stmt 1 discriminator 5 view .LVU45
+ 183              		.loc 1 59 4 is_stmt 1 discriminator 5 view .LVU45
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 7
+
+
   62:Core/Src/MPU6050.c **** 			
- 182              		.loc 1 62 4 discriminator 5 view .LVU46
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 7
-
-
+ 184              		.loc 1 62 4 discriminator 5 view .LVU46
   59:Core/Src/MPU6050.c **** 			{
- 183              		.loc 1 59 9 discriminator 5 view .LVU47
- 184 00ca FEE7     		b	.L12
- 185              	.L11:
+ 185              		.loc 1 59 9 discriminator 5 view .LVU47
+ 186 00ce FEE7     		b	.L12
+ 187              	.L11:
   65:Core/Src/MPU6050.c **** 		if(check!=Data)
- 186              		.loc 1 65 3 view .LVU48
- 187 00cc 4FF47A73 		mov	r3, #1000
- 188 00d0 0293     		str	r3, [sp, #8]
- 189 00d2 0123     		movs	r3, #1
- 190 00d4 0193     		str	r3, [sp, #4]
- 191 00d6 0DF11702 		add	r2, sp, #23
- 192 00da 0092     		str	r2, [sp]
- 193 00dc 1C22     		movs	r2, #28
- 194 00de D021     		movs	r1, #208
- 195 00e0 4148     		ldr	r0, .L28
- 196 00e2 FFF7FEFF 		bl	HAL_I2C_Mem_Read
- 197              	.LVL5:
+ 188              		.loc 1 65 3 view .LVU48
+ 189 00d0 4FF47A73 		mov	r3, #1000
+ 190 00d4 0293     		str	r3, [sp, #8]
+ 191 00d6 0123     		movs	r3, #1
+ 192 00d8 0193     		str	r3, [sp, #4]
+ 193 00da 0DF11702 		add	r2, sp, #23
+ 194 00de 0092     		str	r2, [sp]
+ 195 00e0 1C22     		movs	r2, #28
+ 196 00e2 D021     		movs	r1, #208
+ 197 00e4 4148     		ldr	r0, .L28
+ 198 00e6 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 199              	.LVL5:
   66:Core/Src/MPU6050.c **** 		{
- 198              		.loc 1 66 3 view .LVU49
+ 200              		.loc 1 66 3 view .LVU49
   66:Core/Src/MPU6050.c **** 		{
- 199              		.loc 1 66 11 is_stmt 0 view .LVU50
- 200 00e6 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
- 201 00ea 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 201              		.loc 1 66 11 is_stmt 0 view .LVU50
+ 202 00ea 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
+ 203 00ee 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
   66:Core/Src/MPU6050.c **** 		{
- 202              		.loc 1 66 5 view .LVU51
- 203 00ee 9A42     		cmp	r2, r3
- 204 00f0 00D0     		beq	.L13
- 205              	.L14:
+ 204              		.loc 1 66 5 view .LVU51
+ 205 00f2 9A42     		cmp	r2, r3
+ 206 00f4 00D0     		beq	.L13
+ 207              	.L14:
   68:Core/Src/MPU6050.c **** 			{
- 206              		.loc 1 68 4 is_stmt 1 discriminator 6 view .LVU52
+ 208              		.loc 1 68 4 is_stmt 1 discriminator 6 view .LVU52
   71:Core/Src/MPU6050.c **** 		}
- 207              		.loc 1 71 4 discriminator 6 view .LVU53
+ 209              		.loc 1 71 4 discriminator 6 view .LVU53
   68:Core/Src/MPU6050.c **** 			{
- 208              		.loc 1 68 9 discriminator 6 view .LVU54
- 209 00f2 FEE7     		b	.L14
- 210              	.L13:
+ 210              		.loc 1 68 9 discriminator 6 view .LVU54
+ 211 00f6 FEE7     		b	.L14
+ 212              	.L13:
   75:Core/Src/MPU6050.c **** 		check =0x00;
- 211              		.loc 1 75 3 view .LVU55
+ 213              		.loc 1 75 3 view .LVU55
   75:Core/Src/MPU6050.c **** 		check =0x00;
- 212              		.loc 1 75 8 is_stmt 0 view .LVU56
- 213 00f4 DF23     		movs	r3, #223
- 214 00f6 8DF81630 		strb	r3, [sp, #22]
+ 214              		.loc 1 75 8 is_stmt 0 view .LVU56
+ 215 00f8 DF23     		movs	r3, #223
+ 216 00fa 8DF81630 		strb	r3, [sp, #22]
   76:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000)!=HAL_OK)
- 215              		.loc 1 76 3 is_stmt 1 view .LVU57
+ 217              		.loc 1 76 3 is_stmt 1 view .LVU57
   76:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, SMPLRT_DIV_REG, 1, &Data, 1, 1000)!=HAL_OK)
- 216              		.loc 1 76 9 is_stmt 0 view .LVU58
- 217 00fa 0023     		movs	r3, #0
- 218 00fc 8DF81730 		strb	r3, [sp, #23]
+ 218              		.loc 1 76 9 is_stmt 0 view .LVU58
+ 219 00fe 0023     		movs	r3, #0
+ 220 0100 8DF81730 		strb	r3, [sp, #23]
   77:Core/Src/MPU6050.c **** 		 {
- 219              		.loc 1 77 3 is_stmt 1 view .LVU59
+ 221              		.loc 1 77 3 is_stmt 1 view .LVU59
   77:Core/Src/MPU6050.c **** 		 {
- 220              		.loc 1 77 6 is_stmt 0 view .LVU60
- 221 0100 4FF47A73 		mov	r3, #1000
- 222 0104 0293     		str	r3, [sp, #8]
- 223 0106 0123     		movs	r3, #1
- 224 0108 0193     		str	r3, [sp, #4]
- 225 010a 0DF11602 		add	r2, sp, #22
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 8
+ 222              		.loc 1 77 6 is_stmt 0 view .LVU60
+ 223 0104 4FF47A73 		mov	r3, #1000
+ 224 0108 0293     		str	r3, [sp, #8]
+ 225 010a 0123     		movs	r3, #1
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 8
 
 
- 226 010e 0092     		str	r2, [sp]
- 227 0110 1922     		movs	r2, #25
- 228 0112 D021     		movs	r1, #208
- 229 0114 3448     		ldr	r0, .L28
- 230 0116 FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 231              	.LVL6:
+ 226 010c 0193     		str	r3, [sp, #4]
+ 227 010e 0DF11602 		add	r2, sp, #22
+ 228 0112 0092     		str	r2, [sp]
+ 229 0114 1922     		movs	r2, #25
+ 230 0116 D021     		movs	r1, #208
+ 231 0118 3448     		ldr	r0, .L28
+ 232 011a FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 233              	.LVL6:
   77:Core/Src/MPU6050.c **** 		 {
- 232              		.loc 1 77 5 view .LVU61
- 233 011a 00B1     		cbz	r0, .L15
- 234              	.L16:
+ 234              		.loc 1 77 5 view .LVU61
+ 235 011e 00B1     		cbz	r0, .L15
+ 236              	.L16:
   79:Core/Src/MPU6050.c **** 			{
- 235              		.loc 1 79 4 is_stmt 1 discriminator 7 view .LVU62
+ 237              		.loc 1 79 4 is_stmt 1 discriminator 7 view .LVU62
   82:Core/Src/MPU6050.c **** 			
- 236              		.loc 1 82 4 discriminator 7 view .LVU63
+ 238              		.loc 1 82 4 discriminator 7 view .LVU63
   79:Core/Src/MPU6050.c **** 			{
- 237              		.loc 1 79 9 discriminator 7 view .LVU64
- 238 011c FEE7     		b	.L16
- 239              	.L15:
+ 239              		.loc 1 79 9 discriminator 7 view .LVU64
+ 240 0120 FEE7     		b	.L16
+ 241              	.L15:
   85:Core/Src/MPU6050.c **** 		if(check!=Data)
- 240              		.loc 1 85 3 view .LVU65
- 241 011e 4FF47A73 		mov	r3, #1000
- 242 0122 0293     		str	r3, [sp, #8]
- 243 0124 0123     		movs	r3, #1
- 244 0126 0193     		str	r3, [sp, #4]
- 245 0128 0DF11702 		add	r2, sp, #23
- 246 012c 0092     		str	r2, [sp]
- 247 012e 1922     		movs	r2, #25
- 248 0130 D021     		movs	r1, #208
- 249 0132 2D48     		ldr	r0, .L28
- 250 0134 FFF7FEFF 		bl	HAL_I2C_Mem_Read
- 251              	.LVL7:
+ 242              		.loc 1 85 3 view .LVU65
+ 243 0122 4FF47A73 		mov	r3, #1000
+ 244 0126 0293     		str	r3, [sp, #8]
+ 245 0128 0123     		movs	r3, #1
+ 246 012a 0193     		str	r3, [sp, #4]
+ 247 012c 0DF11702 		add	r2, sp, #23
+ 248 0130 0092     		str	r2, [sp]
+ 249 0132 1922     		movs	r2, #25
+ 250 0134 D021     		movs	r1, #208
+ 251 0136 2D48     		ldr	r0, .L28
+ 252 0138 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 253              	.LVL7:
   86:Core/Src/MPU6050.c **** 		{
- 252              		.loc 1 86 3 view .LVU66
+ 254              		.loc 1 86 3 view .LVU66
   86:Core/Src/MPU6050.c **** 		{
- 253              		.loc 1 86 11 is_stmt 0 view .LVU67
- 254 0138 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
- 255 013c 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 255              		.loc 1 86 11 is_stmt 0 view .LVU67
+ 256 013c 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
+ 257 0140 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
   86:Core/Src/MPU6050.c **** 		{
- 256              		.loc 1 86 5 view .LVU68
- 257 0140 9A42     		cmp	r2, r3
- 258 0142 00D0     		beq	.L17
- 259              	.L18:
+ 258              		.loc 1 86 5 view .LVU68
+ 259 0144 9A42     		cmp	r2, r3
+ 260 0146 00D0     		beq	.L17
+ 261              	.L18:
   88:Core/Src/MPU6050.c **** 			{
- 260              		.loc 1 88 4 is_stmt 1 discriminator 8 view .LVU69
+ 262              		.loc 1 88 4 is_stmt 1 discriminator 8 view .LVU69
   91:Core/Src/MPU6050.c **** 		}
- 261              		.loc 1 91 4 discriminator 8 view .LVU70
+ 263              		.loc 1 91 4 discriminator 8 view .LVU70
   88:Core/Src/MPU6050.c **** 			{
- 262              		.loc 1 88 9 discriminator 8 view .LVU71
- 263 0144 FEE7     		b	.L18
- 264              	.L17:
+ 264              		.loc 1 88 9 discriminator 8 view .LVU71
+ 265 0148 FEE7     		b	.L18
+ 266              	.L17:
   95:Core/Src/MPU6050.c **** 		check = 0x00;
- 265              		.loc 1 95 3 view .LVU72
+ 267              		.loc 1 95 3 view .LVU72
   95:Core/Src/MPU6050.c **** 		check = 0x00;
- 266              		.loc 1 95 8 is_stmt 0 view .LVU73
- 267 0146 0123     		movs	r3, #1
- 268 0148 8DF81630 		strb	r3, [sp, #22]
-  96:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, INT_ENABLE_REG, 1, &Data, 1, 1000)!=HAL_OK)
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 9
+ 268              		.loc 1 95 8 is_stmt 0 view .LVU73
+ 269 014a 0123     		movs	r3, #1
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 9
 
 
- 269              		.loc 1 96 3 is_stmt 1 view .LVU74
+ 270 014c 8DF81630 		strb	r3, [sp, #22]
   96:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, INT_ENABLE_REG, 1, &Data, 1, 1000)!=HAL_OK)
- 270              		.loc 1 96 9 is_stmt 0 view .LVU75
- 271 014c 0022     		movs	r2, #0
- 272 014e 8DF81720 		strb	r2, [sp, #23]
+ 271              		.loc 1 96 3 is_stmt 1 view .LVU74
+  96:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, INT_ENABLE_REG, 1, &Data, 1, 1000)!=HAL_OK)
+ 272              		.loc 1 96 9 is_stmt 0 view .LVU75
+ 273 0150 0022     		movs	r2, #0
+ 274 0152 8DF81720 		strb	r2, [sp, #23]
   97:Core/Src/MPU6050.c **** 		 {
- 273              		.loc 1 97 3 is_stmt 1 view .LVU76
+ 275              		.loc 1 97 3 is_stmt 1 view .LVU76
   97:Core/Src/MPU6050.c **** 		 {
- 274              		.loc 1 97 6 is_stmt 0 view .LVU77
- 275 0152 4FF47A72 		mov	r2, #1000
- 276 0156 0292     		str	r2, [sp, #8]
- 277 0158 0193     		str	r3, [sp, #4]
- 278 015a 0DF11602 		add	r2, sp, #22
- 279 015e 0092     		str	r2, [sp]
- 280 0160 3822     		movs	r2, #56
- 281 0162 D021     		movs	r1, #208
- 282 0164 2048     		ldr	r0, .L28
- 283 0166 FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 284              	.LVL8:
+ 276              		.loc 1 97 6 is_stmt 0 view .LVU77
+ 277 0156 4FF47A72 		mov	r2, #1000
+ 278 015a 0292     		str	r2, [sp, #8]
+ 279 015c 0193     		str	r3, [sp, #4]
+ 280 015e 0DF11602 		add	r2, sp, #22
+ 281 0162 0092     		str	r2, [sp]
+ 282 0164 3822     		movs	r2, #56
+ 283 0166 D021     		movs	r1, #208
+ 284 0168 2048     		ldr	r0, .L28
+ 285 016a FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 286              	.LVL8:
   97:Core/Src/MPU6050.c **** 		 {
- 285              		.loc 1 97 5 view .LVU78
- 286 016a 00B1     		cbz	r0, .L19
- 287              	.L20:
+ 287              		.loc 1 97 5 view .LVU78
+ 288 016e 00B1     		cbz	r0, .L19
+ 289              	.L20:
   99:Core/Src/MPU6050.c **** 				{
- 288              		.loc 1 99 5 is_stmt 1 discriminator 9 view .LVU79
+ 290              		.loc 1 99 5 is_stmt 1 discriminator 9 view .LVU79
  102:Core/Src/MPU6050.c ****  		 }
- 289              		.loc 1 102 5 discriminator 9 view .LVU80
+ 291              		.loc 1 102 5 discriminator 9 view .LVU80
   99:Core/Src/MPU6050.c **** 				{
- 290              		.loc 1 99 10 discriminator 9 view .LVU81
- 291 016c FEE7     		b	.L20
- 292              	.L19:
+ 292              		.loc 1 99 10 discriminator 9 view .LVU81
+ 293 0170 FEE7     		b	.L20
+ 294              	.L19:
  104:Core/Src/MPU6050.c **** 		if(check!=Data)
- 293              		.loc 1 104 3 view .LVU82
- 294 016e 4FF47A73 		mov	r3, #1000
- 295 0172 0293     		str	r3, [sp, #8]
- 296 0174 0123     		movs	r3, #1
- 297 0176 0193     		str	r3, [sp, #4]
- 298 0178 0DF11702 		add	r2, sp, #23
- 299 017c 0092     		str	r2, [sp]
- 300 017e 3822     		movs	r2, #56
- 301 0180 D021     		movs	r1, #208
- 302 0182 1948     		ldr	r0, .L28
- 303 0184 FFF7FEFF 		bl	HAL_I2C_Mem_Read
- 304              	.LVL9:
+ 295              		.loc 1 104 3 view .LVU82
+ 296 0172 4FF47A73 		mov	r3, #1000
+ 297 0176 0293     		str	r3, [sp, #8]
+ 298 0178 0123     		movs	r3, #1
+ 299 017a 0193     		str	r3, [sp, #4]
+ 300 017c 0DF11702 		add	r2, sp, #23
+ 301 0180 0092     		str	r2, [sp]
+ 302 0182 3822     		movs	r2, #56
+ 303 0184 D021     		movs	r1, #208
+ 304 0186 1948     		ldr	r0, .L28
+ 305 0188 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 306              	.LVL9:
  105:Core/Src/MPU6050.c **** 		{
- 305              		.loc 1 105 3 view .LVU83
+ 307              		.loc 1 105 3 view .LVU83
  105:Core/Src/MPU6050.c **** 		{
- 306              		.loc 1 105 11 is_stmt 0 view .LVU84
- 307 0188 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
- 308 018c 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 308              		.loc 1 105 11 is_stmt 0 view .LVU84
+ 309 018c 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
+ 310 0190 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
  105:Core/Src/MPU6050.c **** 		{
- 309              		.loc 1 105 5 view .LVU85
- 310 0190 9A42     		cmp	r2, r3
- 311 0192 00D0     		beq	.L21
- 312              	.L22:
+ 311              		.loc 1 105 5 view .LVU85
+ 312 0194 9A42     		cmp	r2, r3
+ 313 0196 00D0     		beq	.L21
+ 314              	.L22:
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 10
+
+
  107:Core/Src/MPU6050.c **** 			{
- 313              		.loc 1 107 4 is_stmt 1 discriminator 10 view .LVU86
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 10
-
-
+ 315              		.loc 1 107 4 is_stmt 1 discriminator 10 view .LVU86
  110:Core/Src/MPU6050.c **** 		}
- 314              		.loc 1 110 4 discriminator 10 view .LVU87
+ 316              		.loc 1 110 4 discriminator 10 view .LVU87
  107:Core/Src/MPU6050.c **** 			{
- 315              		.loc 1 107 9 discriminator 10 view .LVU88
- 316 0194 FEE7     		b	.L22
- 317              	.L21:
+ 317              		.loc 1 107 9 discriminator 10 view .LVU88
+ 318 0198 FEE7     		b	.L22
+ 319              	.L21:
  114:Core/Src/MPU6050.c **** 		check =0x00;
- 318              		.loc 1 114 3 view .LVU89
+ 320              		.loc 1 114 3 view .LVU89
  114:Core/Src/MPU6050.c **** 		check =0x00;
- 319              		.loc 1 114 8 is_stmt 0 view .LVU90
- 320 0196 0023     		movs	r3, #0
- 321 0198 8DF81630 		strb	r3, [sp, #22]
+ 321              		.loc 1 114 8 is_stmt 0 view .LVU90
+ 322 019a 0023     		movs	r3, #0
+ 323 019c 8DF81630 		strb	r3, [sp, #22]
  115:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, INT_PIN_CFG_REG, 1, &Data, 1, 1000)!=HAL_OK)
- 322              		.loc 1 115 3 is_stmt 1 view .LVU91
+ 324              		.loc 1 115 3 is_stmt 1 view .LVU91
  115:Core/Src/MPU6050.c **** 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, INT_PIN_CFG_REG, 1, &Data, 1, 1000)!=HAL_OK)
- 323              		.loc 1 115 9 is_stmt 0 view .LVU92
- 324 019c 8DF81730 		strb	r3, [sp, #23]
+ 325              		.loc 1 115 9 is_stmt 0 view .LVU92
+ 326 01a0 8DF81730 		strb	r3, [sp, #23]
  116:Core/Src/MPU6050.c **** 		 {
- 325              		.loc 1 116 3 is_stmt 1 view .LVU93
+ 327              		.loc 1 116 3 is_stmt 1 view .LVU93
  116:Core/Src/MPU6050.c **** 		 {
- 326              		.loc 1 116 6 is_stmt 0 view .LVU94
- 327 01a0 4FF47A73 		mov	r3, #1000
- 328 01a4 0293     		str	r3, [sp, #8]
- 329 01a6 0123     		movs	r3, #1
- 330 01a8 0193     		str	r3, [sp, #4]
- 331 01aa 0DF11602 		add	r2, sp, #22
- 332 01ae 0092     		str	r2, [sp]
- 333 01b0 3722     		movs	r2, #55
- 334 01b2 D021     		movs	r1, #208
- 335 01b4 0C48     		ldr	r0, .L28
- 336 01b6 FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 337              	.LVL10:
+ 328              		.loc 1 116 6 is_stmt 0 view .LVU94
+ 329 01a4 4FF47A73 		mov	r3, #1000
+ 330 01a8 0293     		str	r3, [sp, #8]
+ 331 01aa 0123     		movs	r3, #1
+ 332 01ac 0193     		str	r3, [sp, #4]
+ 333 01ae 0DF11602 		add	r2, sp, #22
+ 334 01b2 0092     		str	r2, [sp]
+ 335 01b4 3722     		movs	r2, #55
+ 336 01b6 D021     		movs	r1, #208
+ 337 01b8 0C48     		ldr	r0, .L28
+ 338 01ba FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 339              	.LVL10:
  116:Core/Src/MPU6050.c **** 		 {
- 338              		.loc 1 116 5 view .LVU95
- 339 01ba 00B1     		cbz	r0, .L23
- 340              	.L24:
+ 340              		.loc 1 116 5 view .LVU95
+ 341 01be 00B1     		cbz	r0, .L23
+ 342              	.L24:
  118:Core/Src/MPU6050.c **** 			{
- 341              		.loc 1 118 4 is_stmt 1 discriminator 11 view .LVU96
+ 343              		.loc 1 118 4 is_stmt 1 discriminator 11 view .LVU96
  121:Core/Src/MPU6050.c ****   		 }
- 342              		.loc 1 121 4 discriminator 11 view .LVU97
+ 344              		.loc 1 121 4 discriminator 11 view .LVU97
  118:Core/Src/MPU6050.c **** 			{
- 343              		.loc 1 118 9 discriminator 11 view .LVU98
- 344 01bc FEE7     		b	.L24
- 345              	.L23:
+ 345              		.loc 1 118 9 discriminator 11 view .LVU98
+ 346 01c0 FEE7     		b	.L24
+ 347              	.L23:
  123:Core/Src/MPU6050.c **** 		if(check!=Data)
- 346              		.loc 1 123 3 view .LVU99
- 347 01be 4FF47A73 		mov	r3, #1000
- 348 01c2 0293     		str	r3, [sp, #8]
- 349 01c4 0123     		movs	r3, #1
- 350 01c6 0193     		str	r3, [sp, #4]
- 351 01c8 0DF11702 		add	r2, sp, #23
- 352 01cc 0092     		str	r2, [sp]
- 353 01ce 3722     		movs	r2, #55
- 354 01d0 D021     		movs	r1, #208
- 355 01d2 0548     		ldr	r0, .L28
- 356 01d4 FFF7FEFF 		bl	HAL_I2C_Mem_Read
- 357              	.LVL11:
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 11
+ 348              		.loc 1 123 3 view .LVU99
+ 349 01c2 4FF47A73 		mov	r3, #1000
+ 350 01c6 0293     		str	r3, [sp, #8]
+ 351 01c8 0123     		movs	r3, #1
+ 352 01ca 0193     		str	r3, [sp, #4]
+ 353 01cc 0DF11702 		add	r2, sp, #23
+ 354 01d0 0092     		str	r2, [sp]
+ 355 01d2 3722     		movs	r2, #55
+ 356 01d4 D021     		movs	r1, #208
+ 357 01d6 0548     		ldr	r0, .L28
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 11
 
 
+ 358 01d8 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 359              	.LVL11:
  124:Core/Src/MPU6050.c **** 		{
- 358              		.loc 1 124 3 view .LVU100
+ 360              		.loc 1 124 3 view .LVU100
  124:Core/Src/MPU6050.c **** 		{
- 359              		.loc 1 124 11 is_stmt 0 view .LVU101
- 360 01d8 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
- 361 01dc 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 361              		.loc 1 124 11 is_stmt 0 view .LVU101
+ 362 01dc 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
+ 363 01e0 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
  124:Core/Src/MPU6050.c **** 		{
- 362              		.loc 1 124 5 view .LVU102
- 363 01e0 9A42     		cmp	r2, r3
- 364 01e2 3FF434AF 		beq	.L1
- 365              	.L25:
+ 364              		.loc 1 124 5 view .LVU102
+ 365 01e4 9A42     		cmp	r2, r3
+ 366 01e6 3FF432AF 		beq	.L1
+ 367              	.L25:
  126:Core/Src/MPU6050.c **** 			{
- 366              		.loc 1 126 4 is_stmt 1 discriminator 12 view .LVU103
+ 368              		.loc 1 126 4 is_stmt 1 discriminator 12 view .LVU103
  129:Core/Src/MPU6050.c **** 		}
- 367              		.loc 1 129 4 discriminator 12 view .LVU104
+ 369              		.loc 1 129 4 discriminator 12 view .LVU104
  126:Core/Src/MPU6050.c **** 			{
- 368              		.loc 1 126 9 discriminator 12 view .LVU105
- 369 01e6 FEE7     		b	.L25
- 370              	.L29:
- 371              		.align	2
- 372              	.L28:
- 373 01e8 00000000 		.word	I2CHandle
- 374              		.cfi_endproc
- 375              	.LFE130:
- 377              		.global	__aeabi_i2d
- 378              		.global	__aeabi_dmul
- 379              		.global	__aeabi_d2f
- 380              		.global	__aeabi_f2d
- 381              		.global	__aeabi_dcmplt
- 382              		.global	__aeabi_dcmpgt
- 383              		.section	.text.MPU6050_Read_Accel,"ax",%progbits
- 384              		.align	1
- 385              		.global	MPU6050_Read_Accel
- 386              		.syntax unified
- 387              		.thumb
- 388              		.thumb_func
- 389              		.fpu fpv4-sp-d16
- 391              	MPU6050_Read_Accel:
- 392              	.LFB131:
+ 370              		.loc 1 126 9 discriminator 12 view .LVU105
+ 371 01ea FEE7     		b	.L25
+ 372              	.L29:
+ 373              		.align	2
+ 374              	.L28:
+ 375 01ec 00000000 		.word	I2CHandle
+ 376              		.cfi_endproc
+ 377              	.LFE130:
+ 379              		.global	__aeabi_i2d
+ 380              		.global	__aeabi_dmul
+ 381              		.global	__aeabi_d2f
+ 382              		.global	__aeabi_f2d
+ 383              		.global	__aeabi_dcmplt
+ 384              		.global	__aeabi_dcmpgt
+ 385              		.section	.text.MPU6050_Read_Accel,"ax",%progbits
+ 386              		.align	1
+ 387              		.global	MPU6050_Read_Accel
+ 388              		.syntax unified
+ 389              		.thumb
+ 390              		.thumb_func
+ 391              		.fpu fpv4-sp-d16
+ 393              	MPU6050_Read_Accel:
+ 394              	.LFB131:
  134:Core/Src/MPU6050.c **** 
  135:Core/Src/MPU6050.c **** 
  136:Core/Src/MPU6050.c **** void MPU6050_Read_Accel (void)
  137:Core/Src/MPU6050.c **** {
- 393              		.loc 1 137 1 view -0
- 394              		.cfi_startproc
- 395              		@ args = 0, pretend = 0, frame = 8
- 396              		@ frame_needed = 0, uses_anonymous_args = 0
- 397 0000 30B5     		push	{r4, r5, lr}
- 398              	.LCFI4:
- 399              		.cfi_def_cfa_offset 12
- 400              		.cfi_offset 4, -12
- 401              		.cfi_offset 5, -8
- 402              		.cfi_offset 14, -4
- 403 0002 87B0     		sub	sp, sp, #28
- 404              	.LCFI5:
- 405              		.cfi_def_cfa_offset 40
+ 395              		.loc 1 137 1 view -0
+ 396              		.cfi_startproc
+ 397              		@ args = 0, pretend = 0, frame = 8
+ 398              		@ frame_needed = 0, uses_anonymous_args = 0
+ 399 0000 30B5     		push	{r4, r5, lr}
+ 400              	.LCFI4:
+ 401              		.cfi_def_cfa_offset 12
+ 402              		.cfi_offset 4, -12
+ 403              		.cfi_offset 5, -8
+ 404              		.cfi_offset 14, -4
+ 405 0002 87B0     		sub	sp, sp, #28
+ 406              	.LCFI5:
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 12
+
+
+ 407              		.cfi_def_cfa_offset 40
  138:Core/Src/MPU6050.c **** 	uint8_t ACCEL_Data[2];
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 12
-
-
- 406              		.loc 1 138 2 view .LVU107
+ 408              		.loc 1 138 2 view .LVU107
  139:Core/Src/MPU6050.c **** 	uint8_t Data;
- 407              		.loc 1 139 2 view .LVU108
+ 409              		.loc 1 139 2 view .LVU108
  140:Core/Src/MPU6050.c **** 
  141:Core/Src/MPU6050.c **** 	// Read 6 BYTES of data starting from ACCEL_XOUT_H register
  142:Core/Src/MPU6050.c **** 
  143:Core/Src/MPU6050.c **** 	if(HAL_I2C_Mem_Read (&I2CHandle, MPU6050_ADDR, ACCEL_XOUT_H_REG, 1, ACCEL_Data, 2, 1000)!=HAL_OK)
- 408              		.loc 1 143 2 view .LVU109
- 409              		.loc 1 143 5 is_stmt 0 view .LVU110
- 410 0004 4FF47A73 		mov	r3, #1000
- 411 0008 0293     		str	r3, [sp, #8]
- 412 000a 0223     		movs	r3, #2
- 413 000c 0193     		str	r3, [sp, #4]
- 414 000e 05AB     		add	r3, sp, #20
- 415 0010 0093     		str	r3, [sp]
- 416 0012 0123     		movs	r3, #1
- 417 0014 3B22     		movs	r2, #59
- 418 0016 D021     		movs	r1, #208
- 419 0018 2948     		ldr	r0, .L44+16
- 420 001a FFF7FEFF 		bl	HAL_I2C_Mem_Read
- 421              	.LVL12:
- 422              		.loc 1 143 4 view .LVU111
- 423 001e 00B1     		cbz	r0, .L31
- 424              	.L32:
+ 410              		.loc 1 143 2 view .LVU109
+ 411              		.loc 1 143 5 is_stmt 0 view .LVU110
+ 412 0004 4FF47A73 		mov	r3, #1000
+ 413 0008 0293     		str	r3, [sp, #8]
+ 414 000a 0223     		movs	r3, #2
+ 415 000c 0193     		str	r3, [sp, #4]
+ 416 000e 05AB     		add	r3, sp, #20
+ 417 0010 0093     		str	r3, [sp]
+ 418 0012 0123     		movs	r3, #1
+ 419 0014 3B22     		movs	r2, #59
+ 420 0016 D021     		movs	r1, #208
+ 421 0018 2948     		ldr	r0, .L44+16
+ 422 001a FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 423              	.LVL12:
+ 424              		.loc 1 143 4 view .LVU111
+ 425 001e 00B1     		cbz	r0, .L31
+ 426              	.L32:
  144:Core/Src/MPU6050.c **** 	{
  145:Core/Src/MPU6050.c **** 		while(1)
- 425              		.loc 1 145 3 is_stmt 1 discriminator 1 view .LVU112
+ 427              		.loc 1 145 3 is_stmt 1 discriminator 1 view .LVU112
  146:Core/Src/MPU6050.c **** 		{
  147:Core/Src/MPU6050.c **** 			
  148:Core/Src/MPU6050.c **** 		}
- 426              		.loc 1 148 3 discriminator 1 view .LVU113
+ 428              		.loc 1 148 3 discriminator 1 view .LVU113
  145:Core/Src/MPU6050.c **** 		{
- 427              		.loc 1 145 8 discriminator 1 view .LVU114
- 428 0020 FEE7     		b	.L32
- 429              	.L31:
+ 429              		.loc 1 145 8 discriminator 1 view .LVU114
+ 430 0020 FEE7     		b	.L32
+ 431              	.L31:
  149:Core/Src/MPU6050.c **** 	}
  150:Core/Src/MPU6050.c **** 
  151:Core/Src/MPU6050.c **** 	int16_t  ACCEL_X_RAW= (int16_t)(ACCEL_Data[0] << 8 | ACCEL_Data [1]);
- 430              		.loc 1 151 2 view .LVU115
- 431              		.loc 1 151 44 is_stmt 0 view .LVU116
- 432 0022 9DF81430 		ldrb	r3, [sp, #20]	@ zero_extendqisi2
- 433              		.loc 1 151 48 view .LVU117
- 434 0026 1B02     		lsls	r3, r3, #8
- 435              		.loc 1 151 24 view .LVU118
- 436 0028 1BB2     		sxth	r3, r3
- 437              		.loc 1 151 66 view .LVU119
- 438 002a 9DF81500 		ldrb	r0, [sp, #21]	@ zero_extendqisi2
- 439              	.LVL13:
+ 432              		.loc 1 151 2 view .LVU115
+ 433              		.loc 1 151 44 is_stmt 0 view .LVU116
+ 434 0022 9DF81430 		ldrb	r3, [sp, #20]	@ zero_extendqisi2
+ 435              		.loc 1 151 48 view .LVU117
+ 436 0026 1B02     		lsls	r3, r3, #8
+ 437              		.loc 1 151 24 view .LVU118
+ 438 0028 1BB2     		sxth	r3, r3
+ 439              		.loc 1 151 66 view .LVU119
+ 440 002a 9DF81500 		ldrb	r0, [sp, #21]	@ zero_extendqisi2
+ 441              	.LVL13:
  152:Core/Src/MPU6050.c **** 	
  153:Core/Src/MPU6050.c **** 
  154:Core/Src/MPU6050.c **** 	//setting the fsRange to +-2 the lsb sensitivity is 16384.0 so divide to get value in g's
  155:Core/Src/MPU6050.c **** 
  156:Core/Src/MPU6050.c **** 	ACCEL_X = ACCEL_X_RAW/16384.0;
- 440              		.loc 1 156 2 is_stmt 1 view .LVU120
- 441              		.loc 1 156 23 is_stmt 0 view .LVU121
- 442 002e 1843     		orrs	r0, r0, r3
- 443              	.LVL14:
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 13
+ 442              		.loc 1 156 2 is_stmt 1 view .LVU120
+ 443              		.loc 1 156 23 is_stmt 0 view .LVU121
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 13
 
 
- 444              		.loc 1 156 23 view .LVU122
- 445 0030 FFF7FEFF 		bl	__aeabi_i2d
- 446              	.LVL15:
- 447              		.loc 1 156 23 view .LVU123
- 448 0034 0022     		movs	r2, #0
- 449 0036 234B     		ldr	r3, .L44+20
- 450 0038 FFF7FEFF 		bl	__aeabi_dmul
- 451              	.LVL16:
- 452 003c FFF7FEFF 		bl	__aeabi_d2f
- 453              	.LVL17:
- 454              		.loc 1 156 10 view .LVU124
- 455 0040 214B     		ldr	r3, .L44+24
- 456 0042 1860     		str	r0, [r3]	@ float
+ 444 002e 1843     		orrs	r0, r0, r3
+ 445              	.LVL14:
+ 446              		.loc 1 156 23 view .LVU122
+ 447 0030 FFF7FEFF 		bl	__aeabi_i2d
+ 448              	.LVL15:
+ 449              		.loc 1 156 23 view .LVU123
+ 450 0034 0022     		movs	r2, #0
+ 451 0036 234B     		ldr	r3, .L44+20
+ 452 0038 FFF7FEFF 		bl	__aeabi_dmul
+ 453              	.LVL16:
+ 454 003c FFF7FEFF 		bl	__aeabi_d2f
+ 455              	.LVL17:
+ 456              		.loc 1 156 10 view .LVU124
+ 457 0040 214B     		ldr	r3, .L44+24
+ 458 0042 1860     		str	r0, [r3]	@ float
  157:Core/Src/MPU6050.c **** 
  158:Core/Src/MPU6050.c **** 	if(ACCEL_X<-0.2 && i==0)
- 457              		.loc 1 158 2 is_stmt 1 view .LVU125
- 458              		.loc 1 158 12 is_stmt 0 view .LVU126
- 459 0044 FFF7FEFF 		bl	__aeabi_f2d
- 460              	.LVL18:
- 461 0048 0446     		mov	r4, r0
- 462 004a 0D46     		mov	r5, r1
- 463              		.loc 1 158 4 view .LVU127
- 464 004c 18A3     		adr	r3, .L44
- 465 004e D3E90023 		ldrd	r2, [r3]
- 466 0052 FFF7FEFF 		bl	__aeabi_dcmplt
- 467              	.LVL19:
- 468 0056 10B1     		cbz	r0, .L33
- 469              		.loc 1 158 22 discriminator 1 view .LVU128
- 470 0058 1C4B     		ldr	r3, .L44+28
- 471 005a 1B68     		ldr	r3, [r3]
- 472              		.loc 1 158 18 discriminator 1 view .LVU129
- 473 005c D3B1     		cbz	r3, .L42
- 474              	.L33:
+ 459              		.loc 1 158 2 is_stmt 1 view .LVU125
+ 460              		.loc 1 158 12 is_stmt 0 view .LVU126
+ 461 0044 FFF7FEFF 		bl	__aeabi_f2d
+ 462              	.LVL18:
+ 463 0048 0446     		mov	r4, r0
+ 464 004a 0D46     		mov	r5, r1
+ 465              		.loc 1 158 4 view .LVU127
+ 466 004c 18A3     		adr	r3, .L44
+ 467 004e D3E90023 		ldrd	r2, [r3]
+ 468 0052 FFF7FEFF 		bl	__aeabi_dcmplt
+ 469              	.LVL19:
+ 470 0056 10B1     		cbz	r0, .L33
+ 471              		.loc 1 158 22 discriminator 1 view .LVU128
+ 472 0058 1C4B     		ldr	r3, .L44+28
+ 473 005a 1B68     		ldr	r3, [r3]
+ 474              		.loc 1 158 18 discriminator 1 view .LVU129
+ 475 005c D3B1     		cbz	r3, .L42
+ 476              	.L33:
  159:Core/Src/MPU6050.c **** 	{
  160:Core/Src/MPU6050.c **** 		printval();
  161:Core/Src/MPU6050.c **** 		i=1;
  162:Core/Src/MPU6050.c **** 	}
  163:Core/Src/MPU6050.c **** 	else if(ACCEL_X>0.2 && i==1)
- 475              		.loc 1 163 7 is_stmt 1 view .LVU130
- 476              		.loc 1 163 9 is_stmt 0 view .LVU131
- 477 005e 16A3     		adr	r3, .L44+8
- 478 0060 D3E90023 		ldrd	r2, [r3]
- 479 0064 2046     		mov	r0, r4
- 480 0066 2946     		mov	r1, r5
- 481 0068 FFF7FEFF 		bl	__aeabi_dcmpgt
- 482              	.LVL20:
- 483 006c 18B1     		cbz	r0, .L35
- 484              		.loc 1 163 26 discriminator 1 view .LVU132
- 485 006e 174B     		ldr	r3, .L44+28
- 486 0070 1B68     		ldr	r3, [r3]
- 487              		.loc 1 163 22 discriminator 1 view .LVU133
- 488 0072 012B     		cmp	r3, #1
- 489 0074 14D0     		beq	.L43
- 490              	.L35:
+ 477              		.loc 1 163 7 is_stmt 1 view .LVU130
+ 478              		.loc 1 163 9 is_stmt 0 view .LVU131
+ 479 005e 16A3     		adr	r3, .L44+8
+ 480 0060 D3E90023 		ldrd	r2, [r3]
+ 481 0064 2046     		mov	r0, r4
+ 482 0066 2946     		mov	r1, r5
+ 483 0068 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 484              	.LVL20:
+ 485 006c 18B1     		cbz	r0, .L35
+ 486              		.loc 1 163 26 discriminator 1 view .LVU132
+ 487 006e 174B     		ldr	r3, .L44+28
+ 488 0070 1B68     		ldr	r3, [r3]
+ 489              		.loc 1 163 22 discriminator 1 view .LVU133
+ 490 0072 012B     		cmp	r3, #1
+ 491 0074 14D0     		beq	.L43
+ 492              	.L35:
  164:Core/Src/MPU6050.c **** 	{
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 14
+
+
  165:Core/Src/MPU6050.c **** 		printval();
  166:Core/Src/MPU6050.c **** 		i=0;
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 14
-
-
  167:Core/Src/MPU6050.c **** 	}
  168:Core/Src/MPU6050.c **** 
  169:Core/Src/MPU6050.c **** 	
  170:Core/Src/MPU6050.c **** 	//clear int_status register
  171:Core/Src/MPU6050.c **** 	if(HAL_I2C_Mem_Read(&I2CHandle, MPU6050_ADDR, INT_STATUS_REG, 1, &Data, 1, 1000)!=HAL_OK)
- 491              		.loc 1 171 2 is_stmt 1 view .LVU134
- 492              		.loc 1 171 5 is_stmt 0 view .LVU135
- 493 0076 4FF47A73 		mov	r3, #1000
- 494 007a 0293     		str	r3, [sp, #8]
- 495 007c 0123     		movs	r3, #1
- 496 007e 0193     		str	r3, [sp, #4]
- 497 0080 0DF11302 		add	r2, sp, #19
- 498 0084 0092     		str	r2, [sp]
- 499 0086 3A22     		movs	r2, #58
- 500 0088 D021     		movs	r1, #208
- 501 008a 0D48     		ldr	r0, .L44+16
- 502 008c FFF7FEFF 		bl	HAL_I2C_Mem_Read
- 503              	.LVL21:
- 504              		.loc 1 171 4 view .LVU136
- 505 0090 60B1     		cbz	r0, .L30
- 506              	.L38:
+ 493              		.loc 1 171 2 is_stmt 1 view .LVU134
+ 494              		.loc 1 171 5 is_stmt 0 view .LVU135
+ 495 0076 4FF47A73 		mov	r3, #1000
+ 496 007a 0293     		str	r3, [sp, #8]
+ 497 007c 0123     		movs	r3, #1
+ 498 007e 0193     		str	r3, [sp, #4]
+ 499 0080 0DF11302 		add	r2, sp, #19
+ 500 0084 0092     		str	r2, [sp]
+ 501 0086 3A22     		movs	r2, #58
+ 502 0088 D021     		movs	r1, #208
+ 503 008a 0D48     		ldr	r0, .L44+16
+ 504 008c FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 505              	.LVL21:
+ 506              		.loc 1 171 4 view .LVU136
+ 507 0090 60B1     		cbz	r0, .L30
+ 508              	.L38:
  172:Core/Src/MPU6050.c **** 	{
  173:Core/Src/MPU6050.c **** 		while(1)
- 507              		.loc 1 173 3 is_stmt 1 discriminator 2 view .LVU137
+ 509              		.loc 1 173 3 is_stmt 1 discriminator 2 view .LVU137
  174:Core/Src/MPU6050.c **** 		{
  175:Core/Src/MPU6050.c **** 
  176:Core/Src/MPU6050.c **** 		}
- 508              		.loc 1 176 3 discriminator 2 view .LVU138
+ 510              		.loc 1 176 3 discriminator 2 view .LVU138
  173:Core/Src/MPU6050.c **** 		{
- 509              		.loc 1 173 8 discriminator 2 view .LVU139
- 510 0092 FEE7     		b	.L38
- 511              	.L42:
+ 511              		.loc 1 173 8 discriminator 2 view .LVU139
+ 512 0092 FEE7     		b	.L38
+ 513              	.L42:
  160:Core/Src/MPU6050.c **** 		i=1;
- 512              		.loc 1 160 3 view .LVU140
- 513 0094 FFF7FEFF 		bl	printval
- 514              	.LVL22:
+ 514              		.loc 1 160 3 view .LVU140
+ 515 0094 FFF7FEFF 		bl	printval
+ 516              	.LVL22:
  161:Core/Src/MPU6050.c **** 	}
- 515              		.loc 1 161 3 view .LVU141
+ 517              		.loc 1 161 3 view .LVU141
  161:Core/Src/MPU6050.c **** 	}
- 516              		.loc 1 161 4 is_stmt 0 view .LVU142
- 517 0098 0C4B     		ldr	r3, .L44+28
- 518 009a 0122     		movs	r2, #1
- 519 009c 1A60     		str	r2, [r3]
- 520 009e EAE7     		b	.L35
- 521              	.L43:
+ 518              		.loc 1 161 4 is_stmt 0 view .LVU142
+ 519 0098 0C4B     		ldr	r3, .L44+28
+ 520 009a 0122     		movs	r2, #1
+ 521 009c 1A60     		str	r2, [r3]
+ 522 009e EAE7     		b	.L35
+ 523              	.L43:
  165:Core/Src/MPU6050.c **** 		i=0;
- 522              		.loc 1 165 3 is_stmt 1 view .LVU143
- 523 00a0 FFF7FEFF 		bl	printval
- 524              	.LVL23:
+ 524              		.loc 1 165 3 is_stmt 1 view .LVU143
+ 525 00a0 FFF7FEFF 		bl	printval
+ 526              	.LVL23:
  166:Core/Src/MPU6050.c **** 	}
- 525              		.loc 1 166 3 view .LVU144
+ 527              		.loc 1 166 3 view .LVU144
  166:Core/Src/MPU6050.c **** 	}
- 526              		.loc 1 166 4 is_stmt 0 view .LVU145
- 527 00a4 094B     		ldr	r3, .L44+28
- 528 00a6 0022     		movs	r2, #0
- 529 00a8 1A60     		str	r2, [r3]
- 530 00aa E4E7     		b	.L35
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 15
+ 528              		.loc 1 166 4 is_stmt 0 view .LVU145
+ 529 00a4 094B     		ldr	r3, .L44+28
+ 530 00a6 0022     		movs	r2, #0
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 15
 
 
- 531              	.L30:
+ 531 00a8 1A60     		str	r2, [r3]
+ 532 00aa E4E7     		b	.L35
+ 533              	.L30:
  177:Core/Src/MPU6050.c **** 	}
  178:Core/Src/MPU6050.c **** }
- 532              		.loc 1 178 1 view .LVU146
- 533 00ac 07B0     		add	sp, sp, #28
- 534              	.LCFI6:
- 535              		.cfi_def_cfa_offset 12
- 536              		@ sp needed
- 537 00ae 30BD     		pop	{r4, r5, pc}
- 538              	.L45:
- 539              		.align	3
- 540              	.L44:
- 541 00b0 9A999999 		.word	-1717986918
- 542 00b4 9999C9BF 		.word	-1077306983
- 543 00b8 9A999999 		.word	-1717986918
- 544 00bc 9999C93F 		.word	1070176665
- 545 00c0 00000000 		.word	I2CHandle
- 546 00c4 0000103F 		.word	1058013184
- 547 00c8 00000000 		.word	.LANCHOR0
- 548 00cc 00000000 		.word	.LANCHOR1
- 549              		.cfi_endproc
- 550              	.LFE131:
- 552              		.global	i
- 553              		.global	ACCEL_X
- 554              		.section	.bss.ACCEL_X,"aw",%nobits
- 555              		.align	2
- 556              		.set	.LANCHOR0,. + 0
- 559              	ACCEL_X:
- 560 0000 00000000 		.space	4
- 561              		.section	.bss.i,"aw",%nobits
- 562              		.align	2
- 563              		.set	.LANCHOR1,. + 0
- 566              	i:
- 567 0000 00000000 		.space	4
- 568              		.text
- 569              	.Letext0:
- 570              		.file 2 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\machine\\_default_types.h"
- 571              		.file 3 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\sys\\_stdint.h"
- 572              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 573              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
- 574              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xe.h"
- 575              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
- 576              		.file 8 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
- 577              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c.h"
- 578              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
- 579              		.file 11 "Core/Inc/main.h"
-ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s 			page 16
+ 534              		.loc 1 178 1 view .LVU146
+ 535 00ac 07B0     		add	sp, sp, #28
+ 536              	.LCFI6:
+ 537              		.cfi_def_cfa_offset 12
+ 538              		@ sp needed
+ 539 00ae 30BD     		pop	{r4, r5, pc}
+ 540              	.L45:
+ 541              		.align	3
+ 542              	.L44:
+ 543 00b0 9A999999 		.word	-1717986918
+ 544 00b4 9999C9BF 		.word	-1077306983
+ 545 00b8 9A999999 		.word	-1717986918
+ 546 00bc 9999C93F 		.word	1070176665
+ 547 00c0 00000000 		.word	I2CHandle
+ 548 00c4 0000103F 		.word	1058013184
+ 549 00c8 00000000 		.word	.LANCHOR0
+ 550 00cc 00000000 		.word	.LANCHOR1
+ 551              		.cfi_endproc
+ 552              	.LFE131:
+ 554              		.global	i
+ 555              		.global	ACCEL_X
+ 556              		.section	.bss.ACCEL_X,"aw",%nobits
+ 557              		.align	2
+ 558              		.set	.LANCHOR0,. + 0
+ 561              	ACCEL_X:
+ 562 0000 00000000 		.space	4
+ 563              		.section	.bss.i,"aw",%nobits
+ 564              		.align	2
+ 565              		.set	.LANCHOR1,. + 0
+ 568              	i:
+ 569 0000 00000000 		.space	4
+ 570              		.text
+ 571              	.Letext0:
+ 572              		.file 2 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 573              		.file 3 "c:\\stm32projects\\toolchain\\gcc-arm\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 574              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 575              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
+ 576              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xe.h"
+ 577              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+ 578              		.file 8 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+ 579              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c.h"
+ 580              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
+ 581              		.file 11 "Core/Inc/main.h"
+ARM GAS  C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 MPU6050.c
-C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s:18     .text.MPU6050_Init:00000000 $t
-C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s:26     .text.MPU6050_Init:00000000 MPU6050_Init
-C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s:373    .text.MPU6050_Init:000001e8 $d
-C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s:384    .text.MPU6050_Read_Accel:00000000 $t
-C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s:391    .text.MPU6050_Read_Accel:00000000 MPU6050_Read_Accel
-C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s:541    .text.MPU6050_Read_Accel:000000b0 $d
-C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s:566    .bss.i:00000000 i
-C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s:559    .bss.ACCEL_X:00000000 ACCEL_X
-C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s:555    .bss.ACCEL_X:00000000 $d
-C:\Users\pierc\AppData\Local\Temp\ccCTjbm4.s:562    .bss.i:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s:18     .text.MPU6050_Init:00000000 $t
+C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s:26     .text.MPU6050_Init:00000000 MPU6050_Init
+C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s:375    .text.MPU6050_Init:000001ec $d
+C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s:386    .text.MPU6050_Read_Accel:00000000 $t
+C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s:393    .text.MPU6050_Read_Accel:00000000 MPU6050_Read_Accel
+C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s:543    .text.MPU6050_Read_Accel:000000b0 $d
+C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s:568    .bss.i:00000000 i
+C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s:561    .bss.ACCEL_X:00000000 ACCEL_X
+C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s:557    .bss.ACCEL_X:00000000 $d
+C:\Users\pierc\AppData\Local\Temp\ccJRqVtr.s:564    .bss.i:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_Mem_Write

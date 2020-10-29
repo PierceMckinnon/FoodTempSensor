@@ -32,8 +32,8 @@ void MPU6050_Init(void)
 		//reset the unit 
 		
 		// power management register 0X6B we should write all 0's to wake the sensor up
-		Data = 0x00;
-		check = 0x01;
+		Data = 0x08;
+		check = 0x00;
 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, PWR_MGMT_1_REG, 1,&Data, 1, 1000)!=HAL_OK)
 		{	
 			while(1)
@@ -52,7 +52,7 @@ void MPU6050_Init(void)
 		}
 
 		//setting range of accel to += 2g, disabling self test
-		Data = 0x01;
+		Data = 0x08;
 		check =0x00;
 		if(HAL_I2C_Mem_Write(&I2CHandle, MPU6050_ADDR, ACCEL_CONFIG_REG, 1, &Data, 1, 1000)!=HAL_OK)
 		 {
